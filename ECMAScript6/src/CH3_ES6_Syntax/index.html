@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ES6</title>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.js"></script>
+  <script src="script.js" defer></script>
+  <script type="text/babel">
+  // using var
+  for(var i= 0; i<45; i++){
+    var div = document.createElement('div');
+    div.className += "var";
+
+    var boxId = i+1;
+    div.innerHTML = boxId;
+
+    div.onclick = function() {
+      alert("you clicked on a box #" + boxId);
+    };
+    document.getElementsByTagName('section')[0].appendChild(div);
+  }
+
+  // using let
+  // So instead of having our i being overwritten each and every time we go through the loop,
+  // we want to store this value with all of our divs.
+  for(let i= 0; i<45; i++){
+    var div = document.createElement('div');
+    div.className += "let";
+
+    let boxId = i+1;
+    div.innerHTML = boxId;
+
+    div.onclick = function() {
+      alert("you clicked on a box #" + boxId);
+    };
+    document.getElementsByTagName('section')[1].appendChild(div);
+  }
+
+	</script>
+</head>
+<body>
+  <h1>VAR vs LET: The difference is scoping.</h1>
+  <p><strong>var</strong> is scoped to the nearest function block</p>
+  <p><strong>let</strong> is scoped to the nearest enclosing block (both are global if outside any block), which can be smaller than a function block.</p>
+  <p>Also, variables declared with let are not accessible before they are declared in their enclosing block.</p>
+  <section></section>
+  <section></section>
+</body>
+
+</html>

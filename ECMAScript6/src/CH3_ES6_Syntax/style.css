@@ -1,0 +1,28 @@
+* {
+  font-family: arial;
+}
+section > div {
+  height: 100px;
+  width: 100px;
+  background-color: CornflowerBlue;
+  float: left;
+  margin: 3px;
+  cursor: pointer;
+
+  text-align: center;
+  line-height: 100px;
+  font-size: 24px;
+  color: #fff;
+}
+
+.let {
+  background-color: CornflowerBlue;
+}
+
+.var {
+  background-color: salmon;
+}
+
+p {
+  font-size: 1.6rem;
+}
