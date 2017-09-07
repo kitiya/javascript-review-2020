@@ -1,60 +1,60 @@
 <!DOCTYPE HTML>
 <html>
 <body>
-	<script>
-		/* 
-			Create an object calculator with three methods:
-			- read() prompts for two values and saves them as object properties.
-			- sum() returns the sum of saved values.
-			- mul() multiplies saved values and returns the result.
-		*/
-		let calculator = {
-			val1: 0,
-			val2: 0,
-		};
+  <script>
+    /* 
+      Create an object calculator with three methods:
+      - read() prompts for two values and saves them as object properties.
+      - sum() returns the sum of saved values.
+      - mul() multiplies saved values and returns the result.
+    */
+    let calculator = {
+      val1: 0,
+      val2: 0,
+    };
 
-		calculator.read = function() {
-			this.val1 = prompt("val1: ", 10);
-			this.val2 = prompt("val2: ", 5);
-		};
+    calculator.read = function() {
+      this.val1 = prompt("val1: ", 10);
+      this.val2 = prompt("val2: ", 5);
+    };
 
-		calculator.sum = function() {
-			return Number(this.val1) + Number(this.val2);
-		}
+    calculator.sum = function() {
+      return Number(this.val1) + Number(this.val2);
+    }
 
-		calculator.mul = function() {
-			return this.val1 * this.val2;
-		}
+    calculator.mul = function() {
+      return this.val1 * this.val2;
+    }
 
-		calculator.read();
-		alert( "val1: " + calculator.val1 + ", val2: " + calculator.val2 );
+    calculator.read();
+    alert( "val1: " + calculator.val1 + ", val2: " + calculator.val2 );
 
-		alert( "sum(): " + calculator.sum() );
-		alert( "mul(): " + calculator.mul() );
-	</script>
+    alert( "sum(): " + calculator.sum() );
+    alert( "mul(): " + calculator.mul() );
+  </script>
 
-	<script>
+  <script>
 
-		// Solution
-		let calculator = {
-			sum() {
-				return this.a + this.b;
-			},
+    // Solution
+    let calculator = {
+      sum() {
+        return this.a + this.b;
+      },
 
-			mul() {
-				return this.a * this.b;
-			},
+      mul() {
+        return this.a * this.b;
+      },
 
-			read() {
-				this.a = +prompt('a?', 0);
-				this.b = +prompt('b?', 0);
-			}
-		};
+      read() {
+        this.a = +prompt('a?', 0);
+        this.b = +prompt('b?', 0);
+      }
+    };
 
-		calculator.read();
-		alert( calculator.sum() );
-		alert( calculator.mul() );
+    calculator.read();
+    alert( calculator.sum() );
+    alert( calculator.mul() );
 
-	</script>
+  </script>
 </body>
 </html>

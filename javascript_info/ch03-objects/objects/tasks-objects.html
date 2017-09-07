@@ -1,69 +1,69 @@
 <!DOCTYPE HTML>
 <html>
 <body>
-	<script>
-		// Task#1 - Hello, Object
-		let user = {};
+  <script>
+    // Task#1 - Hello, Object
+    let user = {};
 
-		user.name = "John";
-		user.surname = "Smith";
-		user.name = "Pete";
+    user.name = "John";
+    user.surname = "Smith";
+    user.name = "Pete";
 
-		delete user.name;
+    delete user.name;
 
-  	// Task#2 - Check for emptiness
-  	// Write the function isEmpty(obj) which returns true if the object has no properties, false otherwise.
-  	function isEmpty(obj) {
-  		// Just loop over the object and return false immediately if there’s at least one property.
-  		for(let key in obj) {
-  			return false;
-  		}
-  		return true;
-  	}
+    // Task#2 - Check for emptiness
+    // Write the function isEmpty(obj) which returns true if the object has no properties, false otherwise.
+    function isEmpty(obj) {
+      // Just loop over the object and return false immediately if there’s at least one property.
+      for(let key in obj) {
+        return false;
+      }
+      return true;
+    }
 
-  	// Task#4 - Sum object properties
-  	// Write the code to sum all salaries and store in the variable sum. Should be 390 in the example above.
-		// If salaries is empty, then the result must be 0.
+    // Task#4 - Sum object properties
+    // Write the code to sum all salaries and store in the variable sum. Should be 390 in the example above.
+    // If salaries is empty, then the result must be 0.
 
-		let salaries = {
-			John: 100,
-			Ann: 160,
-			Pete: 130
-		}
+    let salaries = {
+      John: 100,
+      Ann: 160,
+      Pete: 130
+    }
 
-		alert(sumSalaries(salaries));
+    alert(sumSalaries(salaries));
 
-		function sumSalaries(salaries){
-			let result = 0;
-			if (!isEmpty(salaries)) {
-				for (let key in salaries) {
-					result += salaries[key];
-				}
-			}
+    function sumSalaries(salaries){
+      let result = 0;
+      if (!isEmpty(salaries)) {
+        for (let key in salaries) {
+          result += salaries[key];
+        }
+      }
 
-			return result;
-		}
+      return result;
+    }
 
-  	// Task#5 - Multiply numeric properties by 2
-  	// Create a function multiplyNumeric(obj) that multiplies all numeric properties of obj by 2.
-  	let menu = {
-  		width: 200,
-  		height: 300,
-  		title: "My menu"
-  	};
+    // Task#5 - Multiply numeric properties by 2
+    // Create a function multiplyNumeric(obj) that multiplies all numeric properties of obj by 2.
+    let menu = {
+      width: 200,
+      height: 300,
+      title: "My menu"
+    };
 
-  	multiplyNumeric(menu);
+    multiplyNumeric(menu);
 
-  	function multiplyNumeric(menu) {
-  		for(let key in menu) {
-  			if (typeof(menu[key]) === 'number') {
-  				menu[key] *= 2;
-  			}
+    function multiplyNumeric(menu) {
+      for(let key in menu) {
+        if (typeof(menu[key]) === 'number') {
+          menu[key] *= 2;
+        }
 
-  			alert(key + ": " + menu[key]);
-  		}
-  	}
-  	
-  	</script>
+        alert(key + ": " + menu[key]);
+      }
+    }
+    
+    </script>
   </body>
   </html>

@@ -1,0 +1,145 @@
+<html>
+<script>
+/* 
+ * Task#1: Sum numbers from the visitor
+ *
+ * Create a script that prompts the visitor to enter two numbers and then shows their sum.
+ * P.S. There is a gotcha with types.
+ */
+
+ function numVisitors() {
+  let num1 = +prompt("num1: ", 5);
+  let num2 = +prompt("num1: ", 55);
+
+  return num1 + num2;  
+}
+
+// alert(`Total visitors: ${numVisitors()}`);
+</script>
+
+<script>
+/* 
+ * Task#2: Why 6.35.toFixed(1) == 6.3?
+ *
+ * According to the documentation Math.round and toFixed both round to the nearest number: 0..4 lead down while 5..9 lead up.
+ *
+ * Why is 6.35 rounded to 6.3, not 6.4?
+ * How to round 6.35 the right way?
+ */
+
+ function why635() {
+   let num = 6.35;
+   return Math.round(num*10)/10;  
+ }
+ 
+// alert(why635());
+
+</script>
+
+<script>
+/*
+ * Task#3: Repeat until the input is a number
+ * 
+ * Create a function readNumber which prompts for a number until the visitor enters a valid numeric value.
+ * 
+ * The resulting value must be returned as a number.
+ * 
+ * The visitor can also stop the process by entering an empty line or pressing “CANCEL”. In that case, the function should return null.
+ */
+
+ function readNumber() {
+  let num;
+  do {
+    num = prompt("Enter a number: ");
+
+    if (isNaN(num)) { // should have used isFinite() function
+      continue;
+    } else if ((num === null) || (num === '')){
+      return null;
+    }else {
+      return num;
+    }
+  } while (true)
+}
+
+//alert(`Read: ${readNumber()}`);
+
+function readNumber_solution() {
+  let num;
+
+  do {
+    num = prompt("Enter a number please?", 0);
+  } while ( !isFinite(num) );
+
+  if (num === null || num === '') return null;
+
+  return +num;
+}
+
+// alert(`Read: ${readNumber_solution()}`);
+</script>
+
+
+<script>
+/*
+ * Task#5: A random number from min to max (see Task#6 first)
+ * 
+ * The built-in function Math.random() creates a random value from 0 to 1 (not including 1).
+ *
+ * Write the function random(min, max) to generate a random floating-point number from min to max (not including max).
+ *
+ * You can use the solution of the task#6 as the base.
+ */
+
+ function random(min, max) {
+  return min + Math.random() * (max - min);
+}
+
+// alert( random(1, 5) );
+</script>
+
+<script>
+/*
+ * Task#6: A random integer from min to max
+ * Create a function randomInteger(min, max) that generates a random integer number from min to max including both min and max as possible values.
+ * 
+ *Any number from the interval min..max must appear with the same probability.
+ * 
+ */
+
+ function random_wrong_solution(min, max) {
+  let val = Math.round(Math.random() * max);
+
+  if (val < min) return min;
+
+  return val;
+}
+
+  // alert(random_wrong_solution(1,5));
+
+// ======================================================================= //
+
+// correct solution#1 : adjusting interval borders
+// To ensure the same intervals, we can generate values from 0.5 to 2.5, thus adding the required probabilities to the edges:
+function randomInteger(min, max) {
+  // now rand is from  (min-0.5) to (max+0.5)
+  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+}
+
+// alert( randomInteger1(1, 3) );
+
+// ======================================================================= //
+
+// correct solution#2 : using floor()
+function randomInteger(min, max) {
+  // here rand is from min to (max+1)
+  let rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+}
+
+// alert( randomInteger2(1, 3) );
+
+</script>
+</html>
+
