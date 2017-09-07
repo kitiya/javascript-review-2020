@@ -1,0 +1,102 @@
+<html>
+<script>
+/*
+ * Task#1: Uppercast the first character
+ *
+ * Write a function ucFirst(str) that returns the string str with the uppercased first character, for instance:
+ * ucFirst("john") == "John";
+ */
+
+ function ucFirst1_wrong(str){
+    // There’s a small problem on this solution though.
+    // If str is empty, then str[0] is undefined, so we’ll get an error.
+
+    return str[0].toUpperCase() + str.slice(1);
+ }
+
+ // Use str.charAt(0), as it always returns a string (maybe empty).
+ function ucFirst2(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+ }
+
+
+ // Use str.charAt(0), as it always returns a string (maybe empty).
+ function ucFirst3(str) {
+    if (!str) return str;
+    
+    return str.charAt(0).toUpperCase() + str.slice(1);    
+    
+ }
+
+ // alert(ucFirst1_wrong("john")); // John
+ // alert(ucFirst2(""));
+ // alert(ucFirst3(""));
+ // alert(ucFirst1_wrong("")); // got TypeError: cannot read property 'toUpperCase' of undefined
+
+</script>
+<script>
+/*
+ * Task#2: Check for span
+ *
+ * Write a function checkSpam(str) that returns true if str contains ‘viagra’ or ‘XXX’, otherwise `false.
+ * The function must be case-insensitive:
+ */
+
+function checkSpam(str) {
+    let spam1 = 'viagra'.toUpperCase();
+    let spam2 = 'XXX';
+
+    return str.toUpperCase().includes(spam1) || str.toUpperCase().includes(spam2);
+}
+
+// alert(checkSpam('buy ViAgRA now'));
+// alert(checkSpam('free xxxxx'));
+// alert(checkSpam("innocent rabbit"));
+</script>
+
+<script>
+/*
+ * Task#3: Truncate the text
+ *
+ * Create a function truncate(str, maxlength) that checks the length of the str and, if it exceeds maxlength – replaces the end of str with the ellipsis character "…", to make its length equal to maxlength.
+ *
+ * The result of the function should be the truncated (if needed) string.
+ */
+
+ function truncate(str, maxLength) {
+    if (str.length < maxLength) return str;
+
+    // The maximal length must be maxlength, so we need to cut it a little shorter, to give space for the ellipsis.
+
+    // Note that there is actually a single unicode character for an ellipsis. That’s not three dots.
+
+ function truncate(str, maxlength) {
+    return str.slice(0,maxLength-1) + "...";
+ }
+
+// alert(truncate("What I'd like to tell on this topic is:", 20)); // "What I'd like to te…"
+// alert(truncate("Hi everyone!", 20)); // "Hi everyone!"
+</script>
+
+<script type="text/javascript">
+/*
+ * Task#4: Extract the money
+ *
+ * We have a cost in the form "$120". That is: the dollar sign goes first, and then the number.
+ *
+ * Create a function extractCurrencyValue(str) that would extract the numeric value from such string and return it.
+ */
+
+function extractCurrencyValue(str) {
+    return +str.replace('$','');
+    // or
+    // return +str.slice(1); // solution
+}
+
+extractCurrencyValue('$120') === 120 ? alert('true') : alert('false');
+
+</script>
+
+
+
+</html>
