@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- add mocha css, to show results -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+  <!-- add mocha framework code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+  <script>
+    mocha.setup('bdd'); // minimal setup
+    </script>
+    <!-- add chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+    // chai has a lot of stuff, let's make assert global
+    let assert = chai.assert;
+    </script>
+  </head>
+
+  <body>
+
+    <script>
+  /*
+ * Task#4: A Maximal Subarray
+ *
+ * The input is an array of numbers, e.g. arr = [1, -2, 3, 4, -9, 6].
+ * 
+ * The task is: find the contiguous subarray of arr with the maximal sum of items.
+ * Write the function getMaxSubSum(arr) that will find return that sum.
+ * If all items are negative, it means that we take none (the subarray is empty), so the sum is zero:
+ *
+ * Please try to think of a fast solution: O(n2) or even O(n) if you can.
+ */
+
+ // slow - O(n2)
+ function getMaxSubSum(arr) {
+  let max = 0;
+  
+  for (let i = 0; i < arr.length; i++) {
+    let sum = 0;
+
+    for(let j = i; j < arr.length; j++) {
+      sum += arr[j];
+      max = Math.max(sum,max);
+    }
+  }
+
+  return max;
+} 
+
+// fast - O(n)
+function getMaxSubSum_Soln(arr) {
+  let maxSum = 0;
+  let partialSum = 0;
+
+  for (let item of arr) { // for each item of arr
+    partialSum += item; // add it to partialSum
+    maxSum = Math.max(maxSum, partialSum); // remember the maximum
+    if (partialSum < 0) partialSum = 0; // zero if negative
+  }
+
+  return maxSum;
+}
+</script>
+
+<!-- the script with tests (describe, it...) -->
+<script src="array-mocha-test.js"></script>
+
+<!-- the element with id="mocha" will contain test results -->
+<div id="mocha"></div>
+
+<!-- run tests! -->
+<script>
+mocha.run();
+</script>
+</body>
+
+</html>

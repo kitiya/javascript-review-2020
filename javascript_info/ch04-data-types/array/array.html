@@ -1,0 +1,95 @@
+<html>
+<script>
+/*
+ * Task#2: Array Operations
+ * Let’s try 5 array operations.
+ * 
+ * - Create an array styles with items “Jazz” and “Blues”.
+ * -  * - Append “Rock-n-Roll” to the end.
+ * - Replace the value in the middle by “Classics”. Your code for finding the middle value should work for any arrays with odd length.
+ * - Strip off the first value of the array and show it.
+ * - Prepend Rap and Reggie to the array.
+ */
+
+ let styles = ['Jazz', 'Blues'];
+ console.log(styles);
+
+ styles.push('Rock-n-Roll');
+ console.log(styles);
+
+ let len = Math.floor(styles.length / 2);
+ styles[len] = 'Classics';
+ console.log(styles);
+
+ console.log(styles.shift());
+ console.log(styles);
+
+ styles.unshift('Rap', 'Reggie');
+ console.log(styles);
+ </script>
+
+ <script>
+/*
+ * Task#3 Sum input numbers
+ *
+ * Write the function sumInput() that:
+ * - Asks the user for values using prompt and stores the values in the array.
+ * - Finishes asking when the user enters a non-numeric value, an empty string, or presses “Cancel”.
+ * - Calculates and returns the sum of array items.
+ *
+ * P.S. A zero 0 is a valid number, please don’t stop the input on zero.
+ */
+ function sumInput() {
+ 	let arr = [];
+
+ 	while (true) {
+ 		let num = prompt("num: ");
+
+ 		if ((num === null) || (num === '') || (!isFinite(num))) break; 
+
+ 		arr.push(+num);
+
+ 	} 
+
+ 	let result = 0;
+ 	for(let num of arr) {
+ 		result += num;
+ 	}
+
+ 	return result;
+ }
+
+ console.log(sumInput());
+ </script>
+
+ <script>
+/*
+ * Task#4: A Maximal Subarray
+ *
+ * The input is an array of numbers, e.g. arr = [1, -2, 3, 4, -9, 6].
+ * 
+ * The task is: find the contiguous subarray of arr with the maximal sum of items.
+ * Write the function getMaxSubSum(arr) that will find return that sum.
+ * If all items are negative, it means that we take none (the subarray is empty), so the sum is zero:
+ *
+ * Please try to think of a fast solution: O(n2) or even O(n) if you can.
+ */
+ function getMaxSubSum(arr) {
+  let max = 0;
+  
+  for (let i = 0; i < arr.length; i++) {
+    let sum = 0;
+
+    for(let j = i; j < arr.length; j++) {
+      sum += arr[j];
+      max = (sum > max) ? sum : max;
+    }
+  }
+
+  return max;
+} 
+ 	return max;
+ }
+ </script>
+
+ </html>
