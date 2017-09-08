@@ -1,0 +1,458 @@
+<html>
+<script>
+/*
+ * Task#1: Translate border-left-width to borderLeftWidth
+ *
+ * Write the function camelize(str) that changes dash-separated words like “my-short-string” into camel-cased “myShortString”.
+ *
+ * That is: removes all dashes, each word after dash becomes uppercased.
+ *
+ * P.S. Hint: use split to split the string into an array, transform it and join back.
+ */
+
+ function camelize(str) {
+ 	let arr = str.split('-');
+ 	let out = [];
+
+ 	arr.map((str,index) => {
+ 		if (index == 0) {
+ 			out.push(str.charAt(0).toLowerCase() + str.slice(1));
+ 		} else{
+ 			out.push(str.charAt(0).toUpperCase() + str.slice(1));
+ 		}
+ 	});
+
+ 	return out.join('');
+ }
+
+// alert(camelize('background-color'));	// backgroundColor
+// alert(camelize('list-style-image'));	// listStyleImage
+// alert(camelize('-webkit-transition'));	// WebkitTransition
+// alert(camelize('Carry--on'));	// WebkitTransition
+
+// =========================================================== // 
+
+function camelize_solution(str) {
+	return str
+        .split('-') // my-long-word -> ['my', 'long', 'word']
+        .map( 
+        	(word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+        ) // ['my', 'long', 'word'] -> ['my', 'Long', 'Word']
+        .join(''); // ['my', 'Long', 'Word'] -> myLongWord
+      }
+      </script>
+
+      <script>
+
+/*
+ * Task#2: Filter "in place"
+ * 
+ * Write a function filterRange(arr, a, b) that gets an array arr, looks for elements between a and b in it and returns an array of them.
+ *
+ * The function should not modify the array. It should return the new array.
+ */
+
+ // my solution
+ function filterRange(arr,a,b) {
+ 	let filtered = arr.filter((item) => {
+ 		return (item => a) && (item <= b);
+ 	});
+
+ 	return filtered;
+ }
+
+ // let arr2 = [5, 3, 8, 1];
+ // alert(filterRange(arr2, 1, 4));
+ // alert(arr2);
+
+// =========================================================== // 
+
+// solution
+function filterRange_solution(arr,a,b) {
+	return arr.filter(item => (a <= item && item <= b));
+}
+
+// =========================================================== // 
+
+// Syntax Note: works - WITH 'curry blacket' and 'return' inside callback function
+function filterRange2(arr,a,b) {
+	return arr.filter((item) => {
+		return (a <= item) && (item <= b)
+	});
+}
+
+// Syntax Note: works - WITHOUT 'curry blacket' and WITHOUT'return' inside callback function
+function filterRange3(arr,a,b) {
+	return arr.filter((item) => 
+		(a <= item) && (item <= b)
+		);
+}
+
+// Syntax Note: doesn't works - WITH 'curry blacket' but NO 'return' inside callback function
+function filterRange_doent_work(arr,a,b) {
+	return arr.filter((item) => {
+		(a <= item) && (item <= b)
+	});
+}
+
+</script>
+
+<script>
+/*
+ * Task#3:
+ *
+ * Write a function filterRangeInPlace(arr, a, b) that gets an array arr and removes from it all values except those that are between a and b. The test is:a ≤ arr[i] ≤ b.
+ *
+ * The function should only modify the array. It should not return anything.
+ */
+
+ let arr3 = [5, 3, 4, 9, 0, 2, 8, 1];
+
+ filterRangeInPlace(arr3, 1, 4);
+
+console.log( arr3 ); // [3, 4, 2, 1]
+
+// Kitiya's solution
+function filterRangeInPlace(arr, a, b) {
+	let pos = [];
+	arr.map((num,index) => {
+		if ((num < a) || (num > b)) {
+			// get  position to be deleted
+			pos.push(index);
+		}
+	});
+
+	// remove value outside a range
+	for (let i = pos.length - 1; i >= 0; i--){
+		arr.splice(pos[i],1);
+	}
+}
+
+// =========================================================== // 
+
+// Iliakan's solution
+function filterRangeInPlace_solution(arr, a, b) {
+	for (let i = 0; i < arr.length; i++) {
+		let val = arr[i];
+
+    // remove if outside of the interval
+    if (val < a || val > b) {
+    	arr.splice(i, 1);
+    	i--;
+    }
+  }
+}
+
+</script>
+
+<script>
+/*
+ * Task#4: Sort in the reverse order
+ */
+ let arr4 = [5, 2, 1, -10, 8, -5, 3];
+
+ function reverseOrderSort(arr) {
+ 	arr.sort((a,b) => b - a );
+
+ 	return arr;
+ }
+
+ console.log( reverseOrderSort(arr4) );
+
+// =========================================================== // 
+
+// solution
+let arr4_sol = [5, 2, 1, -10, 8];
+
+arr4_sol.sort((a,b) => b - a);
+
+console.log( arr4_sol );
+</script>
+
+<script>
+/*
+ * Task#5: We have an array of strings arr. We’d like to have a sorted copy of it, but keep arr unmodified.
+ *
+ * Create a function copySorted(arr) that returns such a copy.
+ */
+ let arr5 = ["HTML", "JavaScript", "CSS"];
+
+ function copySorted(arr) {
+ 	let temp = arr.slice(0);
+
+ 	temp.sort((a,b) => a > b);
+
+ 	return temp;
+ }
+
+console.log( copySorted(arr5) ); // CSS, HTML, JavaScript
+console.log( arr5 ); // HTML, JavaScript, CSS (no changes)
+
+// =========================================================== // 
+
+// solution
+function copySorted_solution(arr) {
+	// We can use slice() to make a copy and run the sort on it:
+	return arr.slice().sort();
+}
+
+let arr5_sol = ["HTML", "JavaScript", "CSS"];
+
+let sorted = copySorted_solution(arr5_sol);
+
+console.log( sorted );
+console.log( arr5_sol );
+
+</script>
+
+<script>
+/*
+ * Task#6: Map to names
+ *
+ * You have an array of user objects, each one has user.name. 
+ * Write the code that converts it into an array of names.
+ */
+
+ let john1 = { name: "John", age: 25 };
+ let pete1 = { name: "Pete", age: 30 };
+ let mary1 = { name: "Mary", age: 28 };
+
+ let users1 = [ john1, pete1, mary1 ];
+
+// use 'map' because it calls the function for each element of the array and returns the array of results.
+let names = users1.map((user) => user.name);
+
+// 'forEach' doesn't work
+// because the result of the function (if it returns any) is thrown away and ignored.
+let names2 = users1.forEach( (user) => user.name);
+
+console.log( names ); // John, Pete, Mary
+
+</script>
+
+<script>
+/*
+ * Task#7: Map to objects
+ *
+ * You have an array of user objects, each one has name, surname and id.
+ *
+ * Write the code to create another array from it, of objects with id and fullName, 
+ * where fullName is generated from name and surname.
+ */
+ let john = { name: "John", surname: "Smith", id: 1 };
+ let pete = { name: "Pete", surname: "Hunt", id: 2 };
+ let mary = { name: "Mary", surname: "Key", id: 3 };
+
+ let users = [ john, pete, mary ];
+
+ let usersMapped = users.map((user) => {
+ 	return {'fullName': user.name + " " + user.surname, 'id': user.id }
+ })
+
+/*
+usersMapped = [
+  { fullName: "John Smith", id: 1 },
+  { fullName: "Pete Hunt", id: 2 },
+  { fullName: "Mary Key", id: 3 }
+]
+*/
+
+console.log( `${usersMapped[0].id} : ${usersMapped[0].fullName}`); // 1: John Smith
+
+// =========================================================== // 
+
+// solution
+let usersMapped_solution = users.map(user => ({
+	fullName: `${user.name} ${user.surname}`,
+	id: user.id
+}));
+
+console.log( `${usersMapped_solution[1].id} : ${usersMapped[1].fullName}`); // 2: Pete Hunt
+
+</script>
+
+<script>
+/*
+ * Task#8: Sort objects
+ *
+ * Write the function sortByName(users) that gets an array of objects with property name and sorts it.
+ */
+ let john8 = { name: "John", age: 25 }
+ let pete8 = { name: "Pete", age: 30 }
+ let mary8 = { name: "Mary", age: 28 }
+
+ let arr8 = [ john8, pete8, mary8 ];
+
+ sortByName(arr8);
+
+console.log( `${arr8[0].name}, ${arr8[1].name}, ${arr8[2].name}` ); // John, Mary, Pete
+
+function sortByName(users) {
+	users.sort((a,b) => a.name > b.name);
+}
+</script>
+
+<script>
+/*
+ * Task#9: Shuffle an array
+ *
+ * Write the function shuffle(array) that shuffles (randomly reorders) elements of the array.
+ *
+ * Multiple runs of shuffle may lead to different orders of elements.
+ * 
+ * All element orders should have an equal probability. 
+ * For instance, [1,2,3] can be reordered as [1,2,3] or [1,3,2] or [3,1,2] etc,
+ * with equal probability of each case.
+ *
+ */
+
+// counts of appearances for all possible permutations
+let count9 = {
+	'123': 0,
+	'132': 0,
+	'213': 0,
+	'231': 0,
+	'321': 0,
+	'312': 0
+};
+
+for (let i = 0; i < 100; i++){
+	let arr9 = [1,2,3];
+	shuffleArray(arr9);
+}
+
+// show counts of all possible permutations
+for(let key in count9) {
+	console.log(`${key}: ${count9[key]}`);
+}
+
+// This is incorrect -  just ignore it. It's soooooo wrong!!!
+// go see the correct one here https://javascript.info/array-methods#shuffle-an-array
+// something about 'Fisher–Yates shuffle'
+function shuffleArray(arr){ 
+	let len = arr.length;
+	let out = [];
+
+	for(let i = 0; i < len ; i++) {
+		let pos = null;
+
+		do {
+			pos = randomInteger(0, len-1);
+
+			//alert(i + ": " + pos);
+		}	while (arr[pos] === null)
+
+		out[i] = arr[pos];
+
+		// alert(out);
+
+		arr[pos] = null;
+	}
+
+	arr = out.splice(0);
+	count9[arr.join('')]++;
+} 
+
+// a solution from one of the number tasks
+function randomInteger(min, max) {
+  // here rand is from min to (max+1)
+  let rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+}
+
+</script>
+
+<script>
+/*
+ * Task#10: Get average age
+ *
+ * Write the function getAverageAge(users) that gets an array of objects with property age and gets the average.
+ *
+ * The formula for the average is (age1 + age2 + ... + ageN) / N.
+ */
+
+ let john10 = { name: "John", age: 35 }
+ let pete10 = { name: "Pete", age: 30 }
+ let mary10 = { name: "Mary", age: 29 }
+
+ let arr10 = [ john10, pete10, mary10 ];
+
+console.log( getAverageAge_solution(arr10) ); // (25+30+29)/3 = 28
+
+function getAverageAge(arr) {
+	let sum = 0;
+
+	let ages = arr.forEach((user) => sum += user.age);
+
+	return (sum / arr.length).toFixed(1);
+}
+
+// =========================================================== // 
+// this solution got correct answer but loop twice
+function getAverageAge1(arr) {
+
+	let ages = arr.map((user) => user.age);
+
+	let sum = 0;
+
+	for (let age of ages) {
+		sum += age;
+	}
+
+	return (sum / arr.length).toFixed(2);
+}
+
+// =========================================================== // 
+
+// Iliakan's solution
+function getAverageAge_solution(users) {
+  return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+}
+</script>
+
+<script>
+/*
+ * Task#11: Filter unique array members
+ * 
+ * Let arr be an array.
+ * Create a function unique(arr) that should return an array with unique items of arr.
+ * 
+ */
+
+// using for..of
+// The for..of doesn’t give access to the number of the current element, just its value, 
+// but in most cases that’s enough. And it’s shorter.
+function unique(arr) {
+	let results = []
+
+	for (let item of arr) {
+		if (!results.includes(item)) {
+			results.push(item);
+		}
+	}
+
+	return results;
+}
+
+// using for..in <= used in object
+// shouldn't use this to iterate an array
+// The loop for..in iterates over all properties, not only the numeric ones.
+function unique1(arr) {
+	let results = []
+
+	for (let item in arr) {
+		if (!results.includes(arr[item])) {
+			results.push(arr[item]);
+		}
+	}
+
+	return results;
+}
+
+let strings11 = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+alert( unique1(strings11) ); // Hare, Krishna, :-O
+ </script>
+ </html>
