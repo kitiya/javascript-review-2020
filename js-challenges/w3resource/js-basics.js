@@ -76,10 +76,10 @@
 
     if (date.getDay() === 0) { // sunday
       yearList.push(year);
-    }
   }
+}
 
-  return yearList;
+return yearList;
 }
 
  // console.log(sunday1st(2014, 2050));
@@ -110,20 +110,20 @@
     if (guessNum === "" || guessNum === null) {
       alert('Goodbye!');
       break;
-    }
+  }
 
-    if (guessNum > target) {
+  if (guessNum > target) {
       end = +guessNum - 1;
       alert('Too large!');
-    } else if (guessNum < target) {
+  } else if (guessNum < target) {
       start = +guessNum + 1;
       alert('Too small!');
-    } else {
+  } else {
       alert(`Good Work! You got it in ${attempt} attempts.`);
       break;
-    }
-    attempt++;
   }
+  attempt++;
+}
 }
 
 // guess10();
@@ -156,11 +156,11 @@ function daysUntilChrismas2() {
 
   if (today.getMonth() == 11 && today.getDate() > 25) {
     cmas.setFullYear(cmas.getFullYear() + 1); 
-  }  
+}  
 
-  let one_day = 1000 * 60 * 60 * 24;
-  
-  return Math.ceil((cmas.getTime() - today.getTime()) / one_day);
+let one_day = 1000 * 60 * 60 * 24;
+
+return Math.ceil((cmas.getTime() - today.getTime()) / one_day);
 }
 
 // ======================================================== //
@@ -208,9 +208,9 @@ function positive_negative(x, y)
 {
   if ((x < 0 && y > 0) || x > 0 && y < 0) {
     return true;
-  } else {
+} else {
     return false;
-  }
+}
 }
 
 // ======================================================== //
@@ -224,9 +224,9 @@ function positive_negative(x, y)
   // because the slice() function will throw an exception if str is null or undefined
   if ((str === null) || (str === undefined) || (str.slice(0,2) === 'Py')) {
     return str;
-  } 
+} 
 
-  return 'Py' + str;  
+return 'Py' + str;  
 }
 
 // console.log(addPy('thon'));     // Python
@@ -245,9 +245,9 @@ function positive_negative(x, y)
  function removeChar(str, pos) {
   if ((str === null) || (str === undefined) || (str.length < pos)) {
     return str;
-  }
+}
 
-  return str.slice(0, pos) + str.slice(pos + 1);
+return str.slice(0, pos) + str.slice(pos + 1);
 }
 
 // console.log(removeChar('w3resource', 0));
@@ -287,9 +287,9 @@ function remove_character(str, char_pos)
   // return false if num is not a numeric value
   if (isNaN(parseFloat(num)) || !isFinite(num)) {
     return false;
-  }
+}
 
-  return ((num % 3 === 0) || (num % 7 === 0)) ? true : false;
+return ((num % 3 === 0) || (num % 7 === 0)) ? true : false;
 }
 
 // console.log(isMultipleOf3or7(3));   // true
@@ -314,11 +314,11 @@ function remove_character(str, char_pos)
  function checkScriptPos5(str){
   if (str.length < 6) {
     return str;
-  }
+}
 
-  let str5 = str.slice(4,10);
+let str5 = str.slice(4,10);
 
-  return (str5 === 'Script') ? str.slice(0,4) + str.slice(10) : str;
+return (str5 === 'Script') ? str.slice(0,4) + str.slice(10) : str;
 
 }
 
@@ -356,8 +356,8 @@ function reverseString1(str) {
   let reverseStr = '';
   for(let i = str.length - 1; i >= 0; i--) {
     reverseStr += str[i];
-  }
-  return reverseStr;
+}
+return reverseStr;
 }
 
 // console.log(reverseString2("JavaScript"));
@@ -366,9 +366,9 @@ function reverseString1(str) {
  function reverseString3(str) {
   if (str.length == 1) {
     return str;
-  }
+}
 
-  return str[str.length - 1] + reverseString3(str.slice(0, str.length - 1));
+return str[str.length - 1] + reverseString3(str.slice(0, str.length - 1));
 }
 
 // console.log(reverseString3("JavaScript"));
@@ -382,9 +382,9 @@ function reverseString1(str) {
   let shiftStr = '';
   for(let i = 0; i < str.length; i++) {
     shiftStr += String.fromCodePoint(str.codePointAt(i) + 1);
-  }
+}
 
-  return shiftStr;
+return shiftStr;
 } 
 
 // console.log(shiftAlphabet('AbcDefGhiJklMnoPqrStuVwxYz'));
@@ -399,7 +399,7 @@ function reverseString1(str) {
   
   arr = arr.map((str) => {
     return str.slice(0,1).toUpperCase() + str.slice(1);
-  })
+})
 
   return arr.join(' ');
 }
@@ -434,19 +434,19 @@ function sortString(str) {
 
   if ((arrIndex1.length == 0) || (arrIndex2.length == 0)) {
     return false;
-  }
+}
 
-  for (let i = 0; i < arrIndex1.length; i++) {
+for (let i = 0; i < arrIndex1.length; i++) {
     for (let j = 0; j < arrIndex2.length; j++) {
       let diff = Math.abs(arrIndex1[i] - arrIndex2[j]);
       if (diff == 3) {
         return true;
-      }
     }
-  }
+}
+}
 
 
-  return false;
+return false;
 }
 
 function getIndex(str, target) {
@@ -458,9 +458,9 @@ function getIndex(str, target) {
 
     arrIndex.push(foundPos);
     pos = foundPos + 1;
-  }
+}
 
-  return arrIndex;
+return arrIndex;
 }
 
 // console.log(separated3('JavaScript', 'J', 'a' )); // true
@@ -504,10 +504,10 @@ function getIndex(str, target) {
   for (let ch of strArr){
     if ((ch == 'a') || (ch == 'e') || (ch == 'i') || (ch == 'o') || (ch == 'u')) {
       numVowels++;
-    }
   }
+}
 
-  return numVowels;
+return numVowels;
 }
 
 // console.log(countVowels('abcidaa'));
@@ -562,10 +562,10 @@ function getIndex(str, target) {
  function divisionToString(numerator, denominator ){
   if (numerator <= 0 || denominator <= 0) {
     return false;
-  }
+}
 
-  let result = (numerator / denominator);
-  
+let result = (numerator / denominator);
+
   let decimal = Math.floor(result);                   // 166666
   let points = Math.round((result - decimal) * 100);  // 67
 
@@ -582,8 +582,8 @@ function getIndex(str, target) {
       newArr.push(str);
       str = '';
       count = 0;
-    }
   }
+}
 
   newArr.reverse();           // ['166', '666']
 
@@ -602,16 +602,16 @@ function division_string(n1, n2) {
   if (n1 <= 0 || n2 <= 0)
     return false;
 
-  let result = Math.floor(n1 / n2).toString();
-  let resultArr = result.split('');
+let result = Math.floor(n1 / n2).toString();
+let resultArr = result.split('');
 
-  if (result >= 100) {
+if (result >= 100) {
     for (let i = result.length - 3; i > 0; i -=3) {
       resultArr.splice(i, 0, ',');
-    }
   }
+}
 
-  return resultArr.join('');
+return resultArr.join('');
 }
 
 // console.log(division_string(5000000000,3)); // 1,666,666,666
@@ -695,7 +695,7 @@ function division_string(n1, n2) {
 /*
  * 77. To test if an array of integers contains 1 or a 3.
  */
-function containOneOrThree(arr) {
+ function containOneOrThree(arr) {
   return (arr.includes(1) || arr.includes(3));
 }
 
@@ -710,7 +710,7 @@ function containOneOrThree(arr) {
 /*
  * 78. To test if an array of integers does not contains 1 or a 3.
  */
-function noOneNorThree(arr) {
+ function noOneNorThree(arr) {
   return (!arr.includes(1) && !arr.includes(3));
 }
 
@@ -734,6 +734,6 @@ function noOneNorThree(arr) {
   let last = arr.slice(len-1);
 
   return last.concat(mid).concat(first);
- }
+}
 
  // console.log(swapFirstLast([1, 2, 3, 4, 5, 6, 7]));    // [7, 2, 3, 4, 5, 6, 1]
