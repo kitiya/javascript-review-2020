@@ -525,7 +525,7 @@ function getIndex(str, target) {
  *
  */
 
-function vowel_Count(str) {
+ function vowel_Count(str) {
   // remove all characters except a,e,i,o,u
   return str.replace(/[^aeiou]/ig, "").length; 
 }
@@ -542,7 +542,7 @@ function vowel_Count(str) {
  * 55. Write a JavaScript program to check if a given string contains equal number of p's and t's present.
  */
 
-function equalLengthPT(str){
+ function equalLengthPT(str){
   let lenP = str.replace(/[^p]/ig, "").length;
   let lenT = str.replace(/[^t]/ig, "").length;
 
@@ -590,7 +590,7 @@ function equalLengthPT(str){
   decimal = newArr.join(','); // 166,166
 
   return decimal + '.' + points; 
- }
+}
 
 // console.log(divisionToString(500000,3));  // 166,666.67
 
@@ -625,7 +625,7 @@ function division_string(n1, n2) {
  *
  * 59. To extract the first half of a string of even length.
  */
-function getFirstHalf(str) {
+ function getFirstHalf(str) {
   return str.slice(0,str.length/2);
 }
 
@@ -638,7 +638,7 @@ function getFirstHalf(str) {
  *
  * 60. To create a new string without the first and last character of a given string.
  */
-function remove2Ends(str) {
+ function remove2Ends(str) {
   return str.slice(1,str.length - 1);
 }
 
@@ -658,92 +658,82 @@ function remove2Ends(str) {
   let pos = Math.floor(str.length/2);
 
   return str.slice(pos - 1, pos + 2);
- }
+}
 
- console.log(getMiddleThree('abcde'));    // bcd (odd length)
- console.log(getMiddleThree('ab'));       // ab
- console.log(getMiddleThree('abcd'));     // bcd (even length)
+ // console.log(getMiddleThree('abcde'));    // bcd (odd length)
+ // console.log(getMiddleThree('ab'));       // ab
+ // console.log(getMiddleThree('abcd'));     // bcd (even length)
 
 // ======================================================== //
 
 /*
- *
+ * 70. To rotate the elements left of a given array of integers. 
  */
  
-// ======================================================== //
+ function rotateArrayLeft(arr) {
+  let len = arr.length;
+
+  // using concat() to join 2 arrays
+  return arr.slice(len - 1).concat(arr.slice(0, len - 1));  //[7] + [1, 2, 3, 4, 5, 6]
+} 
+// console.log(rotateArrayLeft([1, 2, 3, 4, 5, 6, 7]));    // [7, 1, 2, 3, 4, 5, 6]
 
 /*
- *
+ * To rotate the elements left 3 times of a given array of integers. 
  */
 
-// ======================================================== //
-/*
- *
- */
+ function rotateArray3Left(arr) {
+  let len = arr.length;
 
-// ======================================================== //
-
-/*
- *
- */
-
-// ======================================================== //
-
-/*
- *
- */
+  // using concat() to join 2 arrays
+  return arr.slice(len - 3).concat(arr.slice(0, len - 3));  //[5, 6, 7] + [1, 2, 3, 4]
+} 
+// console.log(rotateArray3Left([1, 2, 3, 4, 5, 6, 7]));    // [5, 6, 7, 1, 2, 3, 4]
 
 // ======================================================== //
 
 /*
- *
+ * 77. To test if an array of integers contains 1 or a 3.
  */
+function containOneOrThree(arr) {
+  return (arr.includes(1) || arr.includes(3));
+}
+
+// console.log(containOneOrThree([1, 2]));     // true
+// console.log(containOneOrThree([1, 2, 3]));  // true
+// console.log(containOneOrThree([3, 4, 5]));  // true 
+// console.log(containOneOrThree([4, 5]));     // false
+// console.log(containOneOrThree([]));         // false
 
 // ======================================================== //
 
 /*
- *
+ * 78. To test if an array of integers does not contains 1 or a 3.
  */
+function noOneNorThree(arr) {
+  return (!arr.includes(1) && !arr.includes(3));
+}
+
+// console.log(noOneNorThree([1, 2]));     // false
+// console.log(noOneNorThree([1, 2, 3]));  // false
+// console.log(noOneNorThree([3, 4, 5]));  // false 
+// console.log(noOneNorThree([4, 5]));     // true
+// console.log(noOneNorThree([]));         // true
 
 // ======================================================== //
 
 /*
- *
+ * 80. To swap the first and last elements of a given array of integers. 
+ * The array length should be at least 1.
  */
+ function swapFirstLast(arr) {
+  let len = arr.length;
 
-// ======================================================== //
+  let first = arr.slice(0,1);
+  let mid = arr.slice(1,len-1);
+  let last = arr.slice(len-1);
 
-/*
- *
- */
+  return last.concat(mid).concat(first);
+ }
 
-// ======================================================== //
-/*
- *
- */
-
-// ======================================================== //
-
-/*
- *
- */
-
-// ======================================================== //
-
-/*
- *
- */
-
-// ======================================================== //
-
-/*
- *
- */
-
-// ======================================================== //
-
-/*
- *
- */
-
-// ======================================================== //
+ // console.log(swapFirstLast([1, 2, 3, 4, 5, 6, 7]));    // [7, 2, 3, 4, 5, 6, 1]
