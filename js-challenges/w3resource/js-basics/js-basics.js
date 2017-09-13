@@ -428,7 +428,7 @@ function sortString(str) {
  *
  * (see solution - using truncate ellipsis ...)
  */
-function separated3(str, char1, char2) {
+ function separated3(str, char1, char2) {
   let arrIndex1 = getIndex(str, char1);
   let arrIndex2 = getIndex(str, char2);
 
@@ -472,12 +472,20 @@ function getIndex(str, target) {
 // console.log(separated3('JavaScript', 't', 'r' )); // true
 
 // -------------------------------------------------------- //
-// an interesting solution from w3resource.com
-// TODO - see how it works?
-function ab_Check(str)
+
+/*
+ * an interesting solution from w3resource.com
+ *
+ * This solution uses regular expression 
+ * 
+ * Syntax: /pattern/modifiers;
+ *
+ * dot (.) find a single character, except newline or lineteminator
+ */
+ function ab_Check(str)
  {
-    return (/a...b/).test(str) || (/b...a/).test(str);
- }
+  return (/a...b/).test(str) || (/b...a/).test(str);
+}
 
 // console.log(ab_Check("Chainsbreak"));
 // console.log(ab_Check("pane borrowed"));
@@ -486,37 +494,175 @@ function ab_Check(str)
 // ======================================================== //
 
 /*
+ * 54. Write a JavaScript program to count the number of vowels in a given string.
+ */
+ function countVowels(str) {
+  let numVowels = 0;
+
+  let strArr = str.split('');
+
+  for (let ch of strArr){
+    if ((ch == 'a') || (ch == 'e') || (ch == 'i') || (ch == 'o') || (ch == 'u')) {
+      numVowels++;
+    }
+  }
+
+  return numVowels;
+}
+
+// console.log(countVowels('abcidaa'));
+
+// -------------------------------------------------------- //
+
+/*a solution from w3resource.com - using regular expression 
+ *
+ * Syntax: /pattern/modifiers;
+ *
+ * [^abc] Find any character NOT between the brackets
+ *
+ * i: Perform case-insensitive matching
+ * g: Perform a global match (find all matches rather than stopping after the first match)
  *
  */
+
+function vowel_Count(str) {
+  // remove all characters except a,e,i,o,u
+  return str.replace(/[^aeiou]/ig, "").length; 
+}
+
+// console.log(vowel_Count('abcidaa'));        // 4
+// console.log(vowel_Count("Python"));         // 1
+// console.log(vowel_Count("w3resource.cOm")); // 5
 
 // ======================================================== //
+
 /*
+ * TAG: Regular Expression
  *
+ * 55. Write a JavaScript program to check if a given string contains equal number of p's and t's present.
  */
+
+function equalLengthPT(str){
+  let lenP = str.replace(/[^p]/ig, "").length;
+  let lenT = str.replace(/[^t]/ig, "").length;
+
+  return lenP === lenT;
+}
+
+// console.log(equalLengthPT('ppplttt'));  // true
+// console.log(equalLengthPT('pppltt'));   // false
+// console.log(equalLengthPT(''));         // true
 
 // ======================================================== //
 
 /*
- *
+ * 56. Write a JavaScript program to divide two positive numbers 
+ * and return a string with properly formatted commas.
  */
+ function divisionToString(numerator, denominator ){
+  if (numerator <= 0 || denominator <= 0) {
+    return false;
+  }
+
+  let result = (numerator / denominator);
+  
+  let decimal = Math.floor(result);                   // 166666
+  let points = Math.round((result - decimal) * 100);  // 67
+
+  let arr = decimal.toString().split('');
+  let newArr = [];
+
+  let str = '';
+  let count = 0;
+  for(let i = arr.length - 1; i >= 0; i--) {
+    str = arr[i] + str;
+    count++;
+
+    if (count == 3) {
+      newArr.push(str);
+      str = '';
+      count = 0;
+    }
+  }
+
+  newArr.reverse();           // ['166', '666']
+
+  decimal = newArr.join(','); // 166,166
+
+  return decimal + '.' + points; 
+ }
+
+// console.log(divisionToString(500000,3));  // 166,666.67
+
+
+// -------------------------------------------------------- //
+
+// a solution from w3resource.com
+function division_string(n1, n2) {
+  if (n1 <= 0 || n2 <= 0)
+    return false;
+
+  let result = Math.floor(n1 / n2).toString();
+  let resultArr = result.split('');
+
+  if (result >= 100) {
+    for (let i = result.length - 3; i > 0; i -=3) {
+      resultArr.splice(i, 0, ',');
+    }
+  }
+
+  return resultArr.join('');
+}
+
+// console.log(division_string(5000000000,3)); // 1,666,666,666
+
+
 
 // ======================================================== //
 
 /*
+ * TAG: String
  *
+ * 59. To extract the first half of a string of even length.
  */
+function getFirstHalf(str) {
+  return str.slice(0,str.length/2);
+}
+
+// console.log(getFirstHalf('abcdef'));  // abc
 
 // ======================================================== //
 
 /*
+ * TAG: String
  *
+ * 60. To create a new string without the first and last character of a given string.
  */
+function remove2Ends(str) {
+  return str.slice(1,str.length - 1);
+}
+
+// console.log(remove2Ends('ab'));       // ''
+// console.log(remove2Ends('abc'));      // b
+// console.log(remove2Ends('abcdef'));   // bcde
 
 // ======================================================== //
 
 /*
+ * TAG: String
  *
+ * 63. To create a string using the middle three characters of a given string of odd length. 
+ * The string length must be greater or equal to three.
  */
+ function getMiddleThree(str) {
+  let pos = Math.floor(str.length/2);
+
+  return str.slice(pos - 1, pos + 2);
+ }
+
+ console.log(getMiddleThree('abcde'));    // bcd (odd length)
+ console.log(getMiddleThree('ab'));       // ab
+ console.log(getMiddleThree('abcd'));     // bcd (even length)
 
 // ======================================================== //
 
