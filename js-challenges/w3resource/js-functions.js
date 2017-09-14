@@ -244,32 +244,445 @@ function getLogestWord1(sentence) {
     }
 
     return matrix;
- }
+}
 
-console.log(getIdentityMatrix(4));
-console.log(getIdentityMatrix(10));
+// console.log(getIdentityMatrix(4));
+// console.log(getIdentityMatrix(10));
 
 // ======================================================== //
 
 /*
  * 11. Write a JavaScript function which will take an array of numbers 
  * stored and find the second lowest and second greatest numbers, respectively.
+ *
+ * Note: input size must be at least two
+ *
+ *
+ * // TODO - STILL INCORRECT => COME BACK LATER!!!!
  */
 
- function getSecondMinMax() {
+ function getSecondLowestGreastest(arr) {
+    let lowest, secondLowest, greatest, secondGreatest;
 
- }
+    // initialize values
+    if (arr[0] > arr[1]) {
+        lowest = arr[1];
+        secondLowest = arr[0];
+
+        greatest = arr[0];
+        secondGreatest = arr[1];
+    } else {
+        lowest = arr[0];
+        secondLowest = arr[1];
+
+        greatest = arr[1];
+        secondGreatest = arr[0];    
+    }
+
+    // search for lowest, seondLowest, greatest, secondGreatest
+    for(let i = 2; i < arr.length; i++) {
+        let num = arr[i];
+        if (num < lowest) {
+            secondLowest = lowest;
+            lowest = num;
+        } else if ((num != lowest) && (num < secondLowest)) {
+            secondLowest = num;
+        }
+
+        if (num > greatest) {
+            secondGreatest = greatest;
+            greatest = num;
+        } else if ((num != greatest) && (num > secondGreatest)) {
+            secondGreatest = num;
+        }
+    }
+
+    let result = [];
+    result.push(secondLowest, secondGreatest);
+
+    return result.join(','); 
+}
+
+// console.log(getSecondLowestGreastest([1,2]));   // THE OUTPUT IS INCORRECT
+// console.log(getSecondLowestGreastest([1,2,3]));
+// console.log(getSecondLowestGreastest([1,2,3,4,5]));
+// console.log(getSecondLowestGreastest([5,4,3,2,1]));
+// console.log(getSecondLowestGreastest([3,2,1,5,2,3,4,1,5]));
+// console.log('\n');
+
+// -------------------------------------------------------- //
+// using built-in sort() function
+function getSecondLowestGreastest2(arr) {
+    arr.sort();
+
+    let result = [];
+    result.push(arr[1], arr[arr.length - 2]);
+
+    return result.join(','); 
+}
+
+// console.log(getSecondLowestGreastest2([1,2]));   // THE OUTPUT IS INCORRECT
+// console.log(getSecondLowestGreastest2([1,2,3]));
+// console.log(getSecondLowestGreastest2([1,2,3,4,5]));
+// console.log(getSecondLowestGreastest2([5,4,3,2,1]));
+// console.log(getSecondLowestGreastest2([1,2,1,5,2,3,4,5]));
+// console.log('\n');
+
+// -------------------------------------------------------- //
+// solution from w3resource
+function Second_Greatest_Lowest(arr_num) {
+    arr_num.sort(function(x,y)  {
+        return x-y;
+    });
+
+    var uniqa = [arr_num[0]];
+    var result = [];
+
+    for(var j=1; j < arr_num.length; j++) {
+        if(arr_num[j-1] !== arr_num[j]) {
+            uniqa.push(arr_num[j]);
+        }
+    }
+
+    result.push(uniqa[1],uniqa[uniqa.length-2]);
+    return result.join(',');
+}
+
+// console.log(Second_Greatest_Lowest([1,2]));   // THE OUTPUT IS INCORRECT
+// console.log(Second_Greatest_Lowest([1,2,3]));
+// console.log(Second_Greatest_Lowest([1,2,3,4,5]));
+// console.log(Second_Greatest_Lowest([5,4,3,2,1]));
+// console.log(Second_Greatest_Lowest([1,2,1,5,2,3,4,5]));
 
 // ======================================================== //
 
 /*
+ * 12. To Check whether a number is perfect.
+ */
+ function isPerfectNumber(num) {
+
+    if (num == 1) return false;
+
+    let sum = 1;
+
+    for(let i = 2; i <= (num / 2); i++) {
+        if (num % i == 0) {
+            sum += i;
+        } 
+    }
+
+    return (num == sum);
+}
+
+// for (let i = 0; i <= 10; i++) {
+//     console.log(i + ': ' + isPerfectNumber(i));
+// }
+// console.log('28: ' + isPerfectNumber(28));
+// console.log('400: ' + isPerfectNumber(400));
+// console.log('496: ' + isPerfectNumber(496));
+// console.log('8000: ' + isPerfectNumber(8000));
+// console.log('8128: ' + isPerfectNumber(8128));
+// console.log('\n');
+
+// -------------------------------------------------------- //
+
+// longer than the previous solution. 
+// actually, there is no array needed.
+function isPerfectNumber2(num) {
+    if (num == 1) return false;
+
+    let half = Math.ceil(num / 2);
+
+    let divisors = [];
+    divisors.push(1);
+
+    for(let i = 2; i <= half; i++) {
+        if (num % i == 0) {
+            divisors.push(i);
+        } 
+    }
+
+    let sum = 0;
+    for(let item of divisors) {
+        sum += item;
+    }
+
+    return (num == sum);
+}
+
+// for (let i = 0; i <= 10; i++) {
+//     console.log(i + ': ' + isPerfectNumber2(i));
+// }
+// console.log('28: ' + isPerfectNumber2(28));
+// console.log('400: ' + isPerfectNumber2(400));
+// console.log('496: ' + isPerfectNumber2(496));
+// console.log('8000: ' + isPerfectNumber2(8000));
+// console.log('8128: ' + isPerfectNumber2(8128));
+
+// ======================================================== //
+
+/*
+ * 13. To compute the factors of a positive integer
+ */
+ function getFactorOf(num) {
+    let divisors = [];
+
+    for(let i = 1; i <= Math.floor(Math.sqrt(num)); i++) {
+        if (num % i == 0) {
+            divisors.push(i);
+
+            if (i != num / i) {
+                divisors.push(num / i);
+            }
+        } 
+    }
+
+    divisors.sort((a, b) => a - b);
+
+    return divisors.join(', ');
+}
+
+// for (let i = 1; i <= 20; i++) {
+//     console.log(i + ': ' + getFactorOf(i));
+// }
+// console.log('28: ' + getFactorOf(28));
+// console.log('400: ' + getFactorOf(400));
+// console.log('496: ' + getFactorOf(496));
+// console.log('8128: ' + getFactorOf(8128));
+
+// 1st solution (less efficient) - loop num / 2 times
+function getFactorOf2(num) {
+    let divisors = [];
+
+    for(let i = 1; i <= num / 2; i++) {
+        if (num % i == 0) {
+            divisors.push(i);
+        } 
+    }
+
+    divisors.push(num);
+
+    return divisors.join(', ');
+}
+
+// for (let i = 1; i <= 20; i++) {
+//     console.log(i + ': ' + getFactorOf(i));
+// }
+// console.log('28: ' + getFactorOf2(28));
+// console.log('400: ' + getFactorOf2(400));
+// console.log('496: ' + getFactorOf2(496));
+// console.log('8128: ' + getFactorOf2(8128));
+
+
+// ======================================================== //
+
+/*
+ * 14. Write a JavaScript function to convert an amount to coins.
  *
+ * Sample function : amountToCoins(46, [25, 10, 5, 2, 1])
+ * Here 46 is the amount. and 25, 10, 5, 2, 1 are coins. 
+ * Output : 25, 10, 10, 1
+ */
+ function amountToCoins(amount, coins) {
+    let output = []
+
+    let coin = coins.shift();
+
+    while (amount > 0) {
+        let temp = Math.floor(amount / coin);
+        
+        while (temp > 0) {
+            output.push(coin);
+            amount -= coin;
+            temp--;
+        }
+
+        coin = coins.shift();
+    }
+
+    return output.join(', ');
+}
+
+// // testing
+// for (let i = 0; i <= 100; i++) {
+//     console.log(i + ': ' + amountToCoins(i, [25, 10, 5, 2, 1]));
+// }
+
+// -------------------------------------------------------- //
+
+// an interesting solution from w3resource using recursion
+function amountToCoinsSolution(amount, coins) {
+    if (amount === 0) {
+        return [];
+    } else  {
+        if (amount >= coins[0]) {
+            left = (amount - coins[0]);
+            return [coins[0]].concat( amountToCoinsSolution(left, coins) );
+        } else {
+            coins.shift();
+            return amountToCoinsSolution(amount, coins);
+        }
+    }
+} 
+
+// // testing
+// for (let i = 0; i <= 100; i++) {
+//     console.log(i + ': ' + amountToCoinsSolution(i, [25, 10, 5, 2, 1]));
+// }
+
+// ======================================================== //
+
+/*
+ * 15. To compute the value of b^n where n is the exponent and b is the bases. 
+ * Accept b and n from the user and display the result.
+ */
+ // using recursion
+ function getPowerOf(b, n) {
+    if (n == 0) return 1;
+    if (n == 1) return b;
+
+    return b * getPowerOf(b, n-1);
+}
+
+// // testing
+// for (let b = 0; b <= 10; b++) {
+//     for(let n = 0; n <= 10; n++) {
+//         console.log(`b: ${b}, n: ${n}, result: ${getPowerOf(b, n)}, === ${Math.pow(b,n)}`);
+//     }
+// }
+// for(let n = 0; n <= 100; n++) {
+//     console.log(`2^n: ${n}, result: ${getPowerOf(2, n)}, === ${Math.pow(2,n)}`);
+// }
+
+// ======================================================== //
+
+/*
+ * 16. To extract unique characters from a string
+ */
+ function getUniqueStr(str) {
+    let arr = str.split('');
+    let uniqueArr = [];
+
+    for (let char of arr) {
+        if (!uniqueArr.includes(char)) {
+            uniqueArr.push(char);
+        }
+    }
+
+    return uniqueArr.join('');
+}
+
+// console.log(getUniqueStr('abccdeffghijjkklmnoppqrssstuvvwwxyzzz')); // abcdefghijklmnopqrstuvwxyz
+// console.log(getUniqueStr('abccdeffghijjkklmnoppqrssstuvvwwxyzzz').length); // 26
+
+// ======================================================== //
+
+/*
+ * 17. To  get the number of occurrences of each letter in specified string
+ *
+ * // TODO: change array to object a-z
+ */
+ function getNumOccurences(str) {
+
+    let cleanedStr = str.toLowerCase().replace(/\s/g, '');
+    let arr = new Array(26).fill(0);
+
+    for(let i = 0; i < cleanedStr.length; i++) {
+        let pos = cleanedStr.codePointAt(i) - 97; // the Unicode code point value of 'a' is 97
+
+        arr[pos]++;
+    }
+
+    return arr;
+}
+console.log('aaaaabccdeff ghijjkklmnoppqrss stuvvwwxyyzzz');
+console.log(getNumOccurences('aaaaabccdeff ghijjkklmnoppqrss stuvvwwxyyzzz'));
+
+
+// -------------------------------------------------------- //
+
+// solution from w3resource ???
+function Char_Counts_solution(str1) {
+    var uchars = {};
+    str1.replace(/\S/g, function(l){uchars[l] = (isNaN(uchars[l]) ? 1 : uchars[l] + 1);});
+    return uchars;
+}
+
+console.log(Char_Counts_solution("The quick brown fox jumps over the lazy dog"));
+console.log(Char_Counts_solution('aaaazz'));
+
+// ======================================================== //
+
+/*
+ * 18. Searching JavaScript arrays with a binary search
  */
 
 // ======================================================== //
 
 /*
- *
+ * 19. Returns array elements larger than a number
+ */
+
+// ======================================================== //
+
+/*
+ * 20. Generates a string id (specified length) of random characters
+ */
+
+// ======================================================== //
+
+/*
+ * 21. To get all possible subset with a fixed length (for example 2) combinations in an array
+ */
+
+// ======================================================== //
+
+/*
+ * 22. Write a JavaScript function that accepts two arguments, a string and a letter 
+ * and the function will count the number of occurrences of the specified letter within the string. 
+ */
+
+// ======================================================== //
+
+/*
+ * 23 To find the first not repeated character
+ */
+
+// ======================================================== //
+
+/*
+ * 24. To apply Bubble Sort algorithm
+ */
+
+// ======================================================== //
+
+/*
+ * 25. To accept a list of country names as input 
+ * and returns the longest country name as output. 
+ */
+
+// ======================================================== //
+
+/*
+ * 26. To find longest substring in a given a string without repeating characters.
+ */
+
+// ======================================================== //
+
+/*
+ * 27. To return the longest palindrome in a given string.
+ */
+
+// ======================================================== //
+
+/*
+ * 28. Write a JavaScript program to pass a 'JavaScript function' as parameter.
+ */
+
+// ======================================================== //
+
+/*
+ * 29. Write a JavaScript function to get the function name.
  */
 
 // ======================================================== //
