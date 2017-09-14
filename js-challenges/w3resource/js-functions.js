@@ -595,33 +595,105 @@ function amountToCoinsSolution(amount, coins) {
 
     return arr;
 }
-console.log('aaaaabccdeff ghijjkklmnoppqrss stuvvwwxyyzzz');
-console.log(getNumOccurences('aaaaabccdeff ghijjkklmnoppqrss stuvvwwxyyzzz'));
+// console.log('aaaaabccdeff ghijjkklmnoppqrss stuvvwwxyyzzz');
+// console.log(getNumOccurences('aaaaabccdeff ghijjkklmnoppqrss stuvvwwxyyzzz'));
 
 
 // -------------------------------------------------------- //
 
 // solution from w3resource ???
+// TODO
 function Char_Counts_solution(str1) {
     var uchars = {};
     str1.replace(/\S/g, function(l){uchars[l] = (isNaN(uchars[l]) ? 1 : uchars[l] + 1);});
     return uchars;
 }
 
-console.log(Char_Counts_solution("The quick brown fox jumps over the lazy dog"));
-console.log(Char_Counts_solution('aaaazz'));
+// console.log(Char_Counts_solution("The quick brown fox jumps over the lazy dog"));
+// console.log(Char_Counts_solution('aaaazz'));
 
 // ======================================================== //
 
 /*
  * 18. Searching JavaScript arrays with a binary search
+ *
+ * the input 'arr' has to be sorted.
  */
 
+ function binarySearch(arr, key) {
+    let lo = 0,
+    hi = arr.length - 1,
+    mid,
+    item;
+
+    while(lo <= hi) {
+        // mid = Math.floor((lo + hi) / 2, 10),
+        mid = Math.floor((lo + hi) / 2),
+
+        item = arr[mid];
+
+        if (item < key) {
+            lo = mid + 1;
+        } else if(item > key) {
+            hi = mid - 1;
+        } else {
+            return mid;
+        }
+    }
+
+    return -1;
+}
+
+// let arr18 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// console.log(arr18);
+// for (let i = 0; i < arr18.length; i++) {
+//     console.log(i + ': ' + binarySearch(arr18, i));    
+// }
+// console.log('\n');  
+
+// let arr18a = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+// console.log(arr18a);
+// for (let i = 0; i < arr18a.length; i++) {
+//     console.log(i * 5 + ': ' + binarySearch(arr18a, i * 5));    
+// }
+// console.log('\n');  
+
+// let arr18b = [15, 20, 25];
+// console.log('21: ' + binarySearch(arr18b, 21));
+
+// -------------------------------------------------------- //
+// incorrect solution using recursion!!!
+// TODO
+function binarySearchRecursion(arr, num) {
+    let mid = Math.floor(arr.length / 2);
+
+    if (num === arr[mid]) {
+        return mid;
+    } else if (arr.length == 1) {
+        return null;
+    } else if (num < arr[mid]) {
+        console.log('test2: ' + mid);
+        return binarySearch(arr.slice(0, mid), num);
+    } else if (num > arr[mid]) { // num > arr[mid]
+        console.log('test3: ' + mid);
+        return mid + binarySearch(arr.slice(mid,arr.length), num);
+    }
+}
 // ======================================================== //
 
 /*
  * 19. Returns array elements larger than a number
  */
+ function getLarger(arr, num) {
+    return arr.filter((item) => item > num);
+}
+
+let arr19 = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+
+// console.log(getLarger(arr19, 10));
+// console.log(getLarger(arr19, 20));
+// console.log(getLarger(arr19, 30));
+// console.log(getLarger(arr19, 50));
 
 // ======================================================== //
 
