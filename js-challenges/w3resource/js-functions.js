@@ -737,10 +737,10 @@ function getRandomLetter() {
     return String.fromCharCode(ascii);
 }
 
-for (let i = 10; i<= 20; i++) {
-    let id = generatesID(i)
-    console.log('Random ID: ' + id + ' : ' + id.length);
-}
+// for (let i = 10; i<= 20; i++) {
+//     let id = generatesID(i)
+//     console.log('Random ID: ' + id + ' : ' + id.length);
+// }
 
 // -------------------------------------------------------- //
 // solution from w3resource
@@ -754,10 +754,10 @@ function makeid(l) {
     return text;
 }
 
-for (let i = 10; i<= 20; i++) {
-    let id = makeid(i)
-    console.log('Random ID: ' + id + ' : ' + id.length);
-}
+// for (let i = 10; i<= 20; i++) {
+//     let id = makeid(i)
+//     console.log('Random ID: ' + id + ' : ' + id.length);
+// }
 
 
 // ======================================================== //
@@ -772,6 +772,18 @@ for (let i = 10; i<= 20; i++) {
  * 22. Write a JavaScript function that accepts two arguments, a string and a letter 
  * and the function will count the number of occurrences of the specified letter within the string. 
  */
+ function countOccurrences(str, letter) {
+    let count = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (str.charAt(i) == letter) {
+            count++;
+        }
+    }
+
+    return count;
+ }
+
+ console.log(countOccurrences('w3resoooource.com', 'o'));
 
 // ======================================================== //
 
