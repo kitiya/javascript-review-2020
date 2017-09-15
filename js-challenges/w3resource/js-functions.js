@@ -700,6 +700,65 @@ let arr19 = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
 /*
  * 20. Generates a string id (specified length) of random characters
  */
+ function generatesID(len) {
+    let randomId = '';
+
+    for (let i = 0; i < len; i++) {
+        randomId += getRandomLetter();
+    }
+
+    return randomId;
+}
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min +1) + min);
+}
+
+function getRandomLetter() {
+    let charType, ascii;
+
+    let rand = getRandomNumber(1,3)
+    if (rand == 1) {
+        charType = "upper";
+    } else if (rand == 2) {
+        charType = "lower";
+    } else { // 3
+        charType = "number";
+    }
+
+    if (charType == "upper") {
+        ascii = getRandomNumber(65, 90);    // A - Z
+    } else if (charType == "lower") {
+        ascii = getRandomNumber(97, 122);   // a - z
+    } else {// number
+        ascii = getRandomNumber(48, 57);    // 0 - 9
+    }
+
+    return String.fromCharCode(ascii);
+}
+
+for (let i = 10; i<= 20; i++) {
+    let id = generatesID(i)
+    console.log('Random ID: ' + id + ' : ' + id.length);
+}
+
+// -------------------------------------------------------- //
+// solution from w3resource
+function makeid(l) {
+    var text = "";
+    var char_list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(var i=0; i < l; i++ ) {  
+        text += char_list.charAt(Math.floor(Math.random() * char_list.length));
+    }
+
+    return text;
+}
+
+for (let i = 10; i<= 20; i++) {
+    let id = makeid(i)
+    console.log('Random ID: ' + id + ' : ' + id.length);
+}
+
 
 // ======================================================== //
 
