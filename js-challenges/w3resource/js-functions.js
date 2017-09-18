@@ -734,7 +734,9 @@ function getRandomLetter() {
         ascii = getRandomNumber(48, 57);    // 0 - 9
     }
 
-    return String.fromCharCode(ascii);
+    // *!* The static String.fromCharCode() method returns a string 
+    // created by using the specified sequence of Unicode values.
+    return String.fromCharCode(ascii); 
 }
 
 // for (let i = 10; i<= 20; i++) {
@@ -781,15 +783,71 @@ function makeid(l) {
     }
 
     return count;
- }
+}
 
- console.log(countOccurrences('w3resoooource.com', 'o'));
+ // console.log(countOccurrences('w3resoooource.com', 'o'));
 
 // ======================================================== //
 
 /*
  * 23 To find the first not repeated character
  */
+ function getFirstUniqueChar(str) {
+    let arr = str.split('');
+    console.log(arr);
+
+    let uniqueChr = '';
+    let count = 0;
+
+    outer:
+    for(let i = 0; i < arr.length; i++) {
+        console.log("i: " + i);
+
+        let chr = arr[i];
+
+        // first appearance
+        let index = arr.indexOf(chr);
+
+        // second appearance
+        let index2 = arr.indexOf(chr, index + 1);
+        console.log("  index2: " + index2);
+
+        // if second appearance not found, it's a unique char
+        if (index2 == -1) {
+            uniqueChr = chr;
+            break;
+        }
+    }
+
+    return uniqueChr
+}
+
+// console.log(getFirstUniqueChar("abcdgabdecde"));
+
+function find_FirstNotRepeatedChar(str) {
+  var arra1 = str.split('');
+  var result = '';
+  var ctr = 0;
+
+  for (var x = 0; x < arra1.length; x++) {
+    ctr = 0;
+
+    for (var y = 0; y < arra1.length; y++) {
+        // console.log(`ij: ${x} ${y}`);
+        if (arra1[x] === arra1[y]) {
+            ctr+= 1;
+        }
+    }
+
+    if (ctr < 2) {
+      result = arra1[x];
+      break;
+  }
+}
+return result;
+}
+
+// console.log(find_FirstNotRepeatedChar("abcdgabdecde"));
 
 // ======================================================== //
 
@@ -802,30 +860,165 @@ function makeid(l) {
 /*
  * 25. To accept a list of country names as input 
  * and returns the longest country name as output. 
+ *
+ * see solution, it's better
  */
+ function getLongestName(countries) {
+    let max = 0;
+    let longest = '';
+
+    countries.forEach(country => {
+        if (country.length > max) {
+            max = country.length;
+            longest = country;
+        }
+    });
+
+    return longest;
+}
+
+// console.log(getLongestName(["Canada", "Italy", "German"]));
+
+// -------------------------------------------------------- //
+
+// this is a good example of using reduce() method
+function Longest_Country_Name(country_name) {
+  return country_name.reduce(function(lname, country) {
+    return lname.length > country.length ? lname : country;
+}, "");
+}
+
+// console.log(Longest_Country_Name(["Australia", "Germany", "United States of America", "Spain"]));
 
 // ======================================================== //
 
 /*
  * 26. To find longest substring in a given a string without repeating characters.
  */
+ function getLongestString(str) {
+    let longest = "";
+
+    for(let i = 0; i < str.length; i++) {
+        // console.log("i: " + i);
+        let remainder = str.length - i;
+
+        // console.log(`  longest: ${longest.length}, remainder: ${remainder}`);
+
+        if (remainder < longest.length) break;
+
+        // find second index. 
+        let secondIndex = str.indexOf(str.substring(i, i + 1), i + 1);
+        secondIndex = (secondIndex == -1) ? str.length : secondIndex;
+
+        // find longest
+        let subStr = str.substring(i, secondIndex);
+        longest = (subStr.length > longest.length) ? subStr : longest;
+
+        // console.log(`  longest: ${longest}`);
+    }
+
+    return longest;
+}
+
+// console.log(getLongestString("google.com")); 
+// console.log(getLongestString("example.com")); 
+// console.log(getLongestString("abcdefg.abcdefghijklam.xyzwww")); 
 
 // ======================================================== //
 
 /*
  * 27. To return the longest palindrome in a given string.
  */
+ function getLongestPalindrome(str) {
+    let len = str.length;
+    let longest = "";
+
+    for(let start = 0; start < len; start++) {
+        for(let end = start + 1; end < len; end++) {
+            // console.log(`ij: ${start} ${end}`);
+
+            let subStr = str.substring(start, end);
+
+            // console.log(`  subStr: ${subStr}`);
+
+            if (isPalindrome(subStr)) {
+                // console.log(`  Palindrome!! ${subStr}`);
+                if (longest.length < subStr.length) {
+                    longest = subStr;
+                    console.log(`    longest: ${longest}`);
+                }
+            }
+        }
+    }
+
+    return longest;
+}
+
+// console.log(`The longest palindrome is **${getLongestPalindrome("abracadabra")}**`);
+// console.log(`The longest palindrome is **${getLongestPalindrome("HYTBCABADEFGHABCDEDCBAGHTFYW12345678987654321ZWETYGDE")}**`); 
+
+// -------------------------------------------------------- //
+
+// solution
+function is_Palindrome(str1) {
+    var rev = str1.split("").reverse().join("");
+    return str1 == rev;
+}
+
+function longest_palindrome(str1) {
+
+    var max_length = 0,
+    maxp = '';
+
+    for(var i=0; i < str1.length; i++) {
+        var subs = str1.substr(i, str1.length);
+
+        for(var j=subs.length; j>=0; j--) {
+            var sub_subs_str = subs.substr(0, j);
+            if (sub_subs_str.length <= 1)
+                continue;
+
+            if (is_Palindrome(sub_subs_str)) {
+                if (sub_subs_str.length > max_length) {
+                    max_length = sub_subs_str.length;
+                    maxp = sub_subs_str;
+                }
+            }
+        }
+    }
+
+    return maxp;
+}
+
+// console.log("\n");
+// console.log(longest_palindrome("abracadabra"));
+// console.log(longest_palindrome("HYTBCABADEFGHABCDEDCBAGHTFYW12345678987654321ZWETYGDE")); 
 
 // ======================================================== //
 
 /*
  * 28. Write a JavaScript program to pass a 'JavaScript function' as parameter.
  */
+ // solution
+ function passFunction(func){
+    func();
+ }
 
-// ======================================================== //
+ function fn() {
+    console.log(arguments.callee.name); // fn
+}
+
+ passFunction(fn);
+
+ // ======================================================== //
 
 /*
  * 29. Write a JavaScript function to get the function name.
  */
+ function getFunctionName() {
+    console.log(arguments.callee.name); // getFunctionName
+ }
+
+ getFunctionName();
 
 // ======================================================== //
