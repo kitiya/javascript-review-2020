@@ -662,23 +662,34 @@ function Char_Counts_solution(str1) {
 // console.log('21: ' + binarySearch(arr18b, 21));
 
 // -------------------------------------------------------- //
-// incorrect solution using recursion!!!
-// TODO
-function binarySearchRecursion(arr, num) {
+// an alternative solution using recursion!!!
+function binarySearchRecursion(arr, key) {
+    if (arr.length === 0) return -1;
+
     let mid = Math.floor(arr.length / 2);
 
-    if (num === arr[mid]) {
+    if (key === arr[mid]) {
         return mid;
-    } else if (arr.length == 1) {
-        return null;
-    } else if (num < arr[mid]) {
-        console.log('test2: ' + mid);
-        return binarySearch(arr.slice(0, mid), num);
-    } else if (num > arr[mid]) { // num > arr[mid]
-        console.log('test3: ' + mid);
-        return mid + binarySearch(arr.slice(mid,arr.length), num);
+    } else if (key < arr[mid]) {
+        return binarySearchRecursion(arr.slice(0, mid), key);
+
+    } else if (key > arr[mid]) { 
+        let foundIndex = binarySearchRecursion(arr.slice(mid + 1, arr.length), key);
+
+        return (foundIndex == -1) ? -1 : mid + 1 + foundIndex;
     }
 }
+
+// for (let i = 0; i <= 10; i++) {
+//     console.log(i + " : " + binarySearch([0, 1, 2, 3, 4, 5, 6, 7], i));    
+// }
+
+// console.log("\n");
+
+// for (let i = 1; i <= 10; i++) {
+//     console.log(i * 5 + " : " + binarySearch([10, 12, 15, 18, 20, 21, 23, 25, 40, 50], i * 5));    
+// }
+
 // ======================================================== //
 
 /*
@@ -1002,13 +1013,13 @@ function longest_palindrome(str1) {
  // solution
  function passFunction(func){
     func();
- }
+}
 
- function fn() {
+function fn() {
     console.log(arguments.callee.name); // fn
 }
 
- passFunction(fn);
+ // passFunction(fn);
 
  // ======================================================== //
 
@@ -1017,8 +1028,8 @@ function longest_palindrome(str1) {
  */
  function getFunctionName() {
     console.log(arguments.callee.name); // getFunctionName
- }
+}
 
- getFunctionName();
+ // getFunctionName();
 
 // ======================================================== //
