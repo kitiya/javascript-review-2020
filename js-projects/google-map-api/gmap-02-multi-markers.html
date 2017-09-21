@@ -48,30 +48,30 @@
             // Info Window Content
             var infoWindowContent = [
             ['<div class="info_content">' +
-            '<h3>London</h3>' + 
-            '<p>London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, site of British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city.</p>' + 
+            '<h3>London</h3>' +
+            '<p>London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, site of British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city.</p>' +
             '</div>'
             ],
             ['<div class="info_content">' +
-            '<h3>Paris</h3>' + 
-            '<p>Paris, France\'s capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré.</p>' + 
+            '<h3>Paris</h3>' +
+            '<p>Paris, France\'s capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré.</p>' +
             '</div>'
             ],
             ['<div class="info_content">' +
-            '<h3>Zurich</h3>' + 
-            '<p>The city of Zurich, a global center for banking and finance, lies at the north end of Lake Zurich in northern Switzerland. The picturesque lanes of the central Altstadt (Old Town), on either side of the Limmat River, reflect its pre-medieval history</p>' + 
+            '<h3>Zurich</h3>' +
+            '<p>The city of Zurich, a global center for banking and finance, lies at the north end of Lake Zurich in northern Switzerland. The picturesque lanes of the central Altstadt (Old Town), on either side of the Limmat River, reflect its pre-medieval history</p>' +
             '</div>'
             ],
             ['<div class="info_content">' +
-            '<h3>Barcelona</h3>' + 
-            '<p>Barcelona, the cosmopolitan capital of Spain’s Catalonia region, is known for its art and architecture. The fantastical Sagrada Família church and other modernist landmarks designed by Antoni Gaudí dot the city. Museu Picasso and Fundació Joan Miró feature modern art by their namesakes. City history museum MUHBA, includes several Roman archaeological sites.</p>' + 
+            '<h3>Barcelona</h3>' +
+            '<p>Barcelona, the cosmopolitan capital of Spain’s Catalonia region, is known for its art and architecture. The fantastical Sagrada Família church and other modernist landmarks designed by Antoni Gaudí dot the city. Museu Picasso and Fundació Joan Miró feature modern art by their namesakes. City history museum MUHBA, includes several Roman archaeological sites.</p>' +
             '</div>'
-            ], 
+            ],
             ];
 
             var infoWindow = new google.maps.InfoWindow(), marker;
 
-            // Loop through our array of markers & place each one on the map 
+            // Loop through our array of markers & place each one on the map
             for(let i = 0; i < markers.length; i++) {
                 var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
 
@@ -96,7 +96,7 @@
         }
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=MYKEY&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
 

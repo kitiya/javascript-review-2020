@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maps API</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="http://maps.google.com/mapfiles/ms/micons/cycling.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+    var map;
+
+    function initMap() {
+        var bounds = new google.maps.LatLngBounds();
+
+        var myCenter = new google.maps.LatLng(47.3769, 8.5417);
+        var mapOptions = {center: myCenter, zoom: 5};
+        var mapCanvas = document.getElementById("map");
+
+        // Display a map on the page
+        map = new google.maps.Map(mapCanvas, mapOptions);
+
+        // Multiple markers
+        var locations = [
+            ['Amsterdam, The Netherlands', 52.3702157, 4.895167900000001],
+            ['Athens, Greece', 37.9753357, 23.7361497],
+            ['Barcelona, Spain', 41.387917, 2.1699187],
+            ['Berlin, Germany', 52.524268, 13.40629],
+            ['Budapest, Hungary', 47.4984056, 19.0407578],
+            ['Cardiff, UK', 51.48158100000001, -3.17909],
+            ['Cologne, Germany', 50.9580867, 6.9204493],
+            ['Dortmund, Germany', 51.50409879999999, 7.4835995],
+            ['Dublin, Co. Dublin, Ireland', 53.34410399999999, -6.267493699999999],
+            ['Florence, Italy', 43.7687324, 11.2569013],
+            ['Frankfurt, Germany', 50.1109221, 8.6821267],
+            ['Hamburg, Germany', 53.556866, 9.994622],
+            ['Helsinki, Finland', 60.169845, 24.9385508],
+            ['Lisbon, Portugal', 38.70693199999999, -9.135632099999999],
+            ['Liverpool, Merseyside, UK', 53.41154, -2.990116],
+            ['London, UK', 51.5081289, -0.128005],
+            ['Madrid, Spain', 40.4166909, -3.700345399999999],
+            ['Manchester, UK', 53.479251, -2.247926],
+            ['Milan, Italy', 45.463681, 9.1881714],
+            ['Moscow, Russia', 55.75, 37.6166667],
+            ['Munich, Germany', 48.1448353, 11.5580067],
+            ['Oslo, Norway', 59.9138688, 10.7522454],
+            ['Paris, France', 48.856614, 2.3522219],
+            ['Prague, Czech Republic', 50.0878114, 14.4204598],
+            ['Rome, Italy', 50.4501, 30.5234],
+            ['St Petersburg, Russia', 60.07623830000001, 30.1213829],
+            ['Stockholm, Sweden', 59.32893000000001, 18.06491],
+            ['Stuttgart, Germany', 48.7754181, 9.181758799999999],
+            ['Valencia, Spain', 39.4702393, -0.3768049],
+            ['Venice, Italy', 45.4343363, 12.3387844],
+            ['Vienna, Austria', 48.2081743, 16.3738189],
+            ['Zurich, Switzerland', 47.3686498, 8.539182499999999],
+            ['Sydney NSW, Australia', -33.873651,151.2068896],
+            ['Melbourne VIC, Australia', -37.8131869,144.9629796],
+            ['Canberra Ave, Australia', -35.3499749,149.2093688],
+            ['Sao Paulo, Brazil', -23.5489433,-46.6388182],
+            ['Rio de Janeiro, Brazil', -22.9035393,-43.2095869],
+            ['Petra, Jordan', 30.3285, 35.4444],
+            ['Calgary, AB', 51.04499999999999,-114.0572222],
+            ['Edmonton, AB', 53.543564,-113.490452],
+            ['Fredericton, NB', 45.9636, -66.6431],
+            ['Halifax, NS', 44.648881,-63.575312],
+            ['Hamilton, ON', 43.243603,-79.889075],
+            ['Montreal, QC', 45.5086699,-73.55399249999999],
+            ['Ottawa, ON', 45.4215296,-75.69719309999999],
+            ['Quebec', 52.9399159,-73.5491361],
+            ['Regina, SK', 50.4547222,-104.6066667],
+            ['Saskatoon, SK', 52.1343699,-106.647656],
+            ['St John, NB', 45.2733153,-66.0633081],
+            ['St John\'s, NL', 47.5605413,-52.71283150000001],
+            ['Toronto, ON', 43.653226,-79.3831843],
+            ['Vancouver, BC', 49.261226,-123.1139268],
+            ['Victoria, BC', 48.4286111,-123.3655556],
+            ['Winnipeg, MB', 49.8997541,-97.1374937],
+            ['Atlanta, GA', 33.7489954,-84.3879824],
+            ['Baltimore, MD, USA', 39.2903848,-76.6121893],
+            ['Boston, MA, USA', 42.3584308,-71.0597732],
+            ['Chicago, IL, USA', 41.8781136,-87.6297982],
+            ['Houston, TX, USA', 29.7601927,-95.36938959999999],
+            ['Las Vegas, NV', 36.114646,-115.172816],
+            ['Los Angeles, CA, USA', 34.0522342,-118.2436849],
+            ['Manhattan, New York, NY', 40.7834345,-73.9662495],
+            ['Nashville, TN', 36.1658899,-86.7844432],
+            ['New York, NY, USA', 40.7143528,-74.00597309999999],
+            ['Philadelphia, PA, USA', 39.952335,-75.16378900000001],
+            ['Phoenix, AZ, USA', 33.4483771,-112.0740373],
+            ['San Antonio, TX', 29.4241219,-98.49362819999999],
+            ['San Diego, CA', 32.7153292,-117.1572551],
+            ['San Francisco, CA', 37.7749295,-122.4194155],
+            ['Washington, DC', 38.8951118,-77.0363658],
+            ['Bangkok', 13.7563, 100.5018],
+            ['Chiang Mai', 18.7061, 98.9817],
+            ['Bali, Indonesia', -8.3405, 115.092],
+            ['Tokyo, Japan', 35.6895, 139.6917],
+            ['Sa Pa, Vietnam', 22.3364, 103.8438],
+            ['Hanoi, Vietnam', 21.0278, 105.8342],
+            ['Galapagos', -0.777259, -91.142578],
+        ];
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+            var position = new google.maps.LatLng(locations[i][1], locations[i][2]);
+
+            bounds.extend(position);
+
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: locations[i][0]
+            });
+
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
+
+            return marker;
+        });
+
+        // An alternative script to add markers to the map using for loop
+        // var markers = [];
+        //
+        // // Loop through our array of markers & place each one on the map
+        // for(let i = 0; i < locations.length; i++) {
+        //     var position = new google.maps.LatLng(locations[i][1], locations[i][2]);
+        //
+        //     bounds.extend(position);
+        //
+        //     marker = new google.maps.Marker({
+        //         position: position,
+        //         map: map,
+        //         title: locations[i][0]
+        //     });
+        //
+        //     markers.push(marker);
+        //
+        //     // Automatically center the map fitting all markers on the screen
+        //     map.fitBounds(bounds);
+        // }
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        }
+        </script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap"></script>
+    </body>
+    </html>
+
+    <!-- https://wrightshq.com/playground/placing-multiple-markers-on-a-google-map-using-api-3/ -->
