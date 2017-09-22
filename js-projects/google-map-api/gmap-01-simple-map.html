@@ -27,11 +27,13 @@
         var map;
 
         function initMap() {
-            var myCenter = new google.maps.LatLng(0, 0);
             var mapCanvas = document.getElementById("map");
+
+            var myCenter = new google.maps.LatLng(0, 0);
             var mapOptions = {center: myCenter, zoom: 3};
 
-            var map = new google.maps.Map(mapCanvas, mapOptions);
+            map = new google.maps.Map(mapCanvas, mapOptions);
+
             let visited = {lat: 52.14, lng: -0.120850};
             var marker = new google.maps.Marker({
                position:visited,
@@ -44,5 +46,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
-
+<!-- MY_API_KEY -->
 <!-- Google Map API Marker Icon Url? https://stackoverflow.com/questions/31197596/google-map-api-marker-icon-url -->
