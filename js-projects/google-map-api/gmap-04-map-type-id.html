@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maps API</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="http://maps.google.com/mapfiles/ms/micons/cycling.png">
+
+    <style>
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    .map {
+        display: inline-block;
+        height: 50%;
+        width: 49%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+
+</head>
+<body>
+    <div id="roadmap-map" class="map"></div>
+    <div id="satellite-map" class="map"></div>
+    <div id="hybrid-map" class="map"></div>
+    <div id="terrain-map" class="map"></div>
+
+    <script>
+    var mapTypes = [
+        {id: 'roadmap-map', type: 'roadmap', zoom: 14},
+        {id: 'satellite-map', type: 'satellite', zoom: 18},
+        {id: 'hybrid-map', type: 'hybrid', zoom: 18},
+        {id: 'terrain-map', type: 'terrain', zoom: 14},
+    ];
+
+    var myCenter, mapCanvas, mapOptions, map;
+    function initMap() {
+        mapTypes.forEach((mapType) => {
+            myCenter = new google.maps.LatLng(45.4236, -75.7009);
+            mapCanvas = document.getElementById(mapType.id);
+            mapOptions = {
+                zoom: mapType.zoom,
+                center: myCenter,
+                mapTypeId: mapType.type,
+            };
+
+            map = new google.maps.Map(mapCanvas, mapOptions);
+            map.setTilt(45);
+        });
+    }
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap" ></script>
+</body>
+</html>
+
+<!-- Google Map API Marker Icon Url? https://stackoverflow.com/questions/31197596/google-map-api-marker-icon-url -->

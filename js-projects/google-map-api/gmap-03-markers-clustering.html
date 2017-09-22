@@ -5,7 +5,22 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="shortcut icon" href="http://maps.google.com/mapfiles/ms/micons/cycling.png">
-    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="style03.css"> -->
+    <style>
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+
 </head>
 <body>
     <div id="map"></div>
@@ -16,7 +31,11 @@
         var bounds = new google.maps.LatLngBounds();
 
         var myCenter = new google.maps.LatLng(47.3769, 8.5417);
-        var mapOptions = {center: myCenter, zoom: 5};
+        var mapOptions = {
+            center: myCenter,
+            zoom: 5,
+            mapTypeId: 'satellite',
+        };
         var mapCanvas = document.getElementById("map");
 
         // Display a map on the page
@@ -79,17 +98,17 @@
             ['Victoria, BC', 48.4286111,-123.3655556],
             ['Winnipeg, MB', 49.8997541,-97.1374937],
             ['Atlanta, GA', 33.7489954,-84.3879824],
-            ['Baltimore, MD, USA', 39.2903848,-76.6121893],
-            ['Boston, MA, USA', 42.3584308,-71.0597732],
-            ['Chicago, IL, USA', 41.8781136,-87.6297982],
-            ['Houston, TX, USA', 29.7601927,-95.36938959999999],
+            ['Baltimore, MD', 39.2903848,-76.6121893],
+            ['Boston, MA', 42.3584308,-71.0597732],
+            ['Chicago, IL', 41.8781136,-87.6297982],
+            ['Houston, TX', 29.7601927,-95.36938959999999],
             ['Las Vegas, NV', 36.114646,-115.172816],
-            ['Los Angeles, CA, USA', 34.0522342,-118.2436849],
+            ['Los Angeles, CA', 34.0522342,-118.2436849],
             ['Manhattan, New York, NY', 40.7834345,-73.9662495],
             ['Nashville, TN', 36.1658899,-86.7844432],
-            ['New York, NY, USA', 40.7143528,-74.00597309999999],
-            ['Philadelphia, PA, USA', 39.952335,-75.16378900000001],
-            ['Phoenix, AZ, USA', 33.4483771,-112.0740373],
+            ['New York, NY', 40.7143528,-74.00597309999999],
+            ['Philadelphia, PA', 39.952335,-75.16378900000001],
+            ['Phoenix, AZ', 33.4483771,-112.0740373],
             ['San Antonio, TX', 29.4241219,-98.49362819999999],
             ['San Diego, CA', 32.7153292,-117.1572551],
             ['San Francisco, CA', 37.7749295,-122.4194155],
@@ -115,7 +134,7 @@
             marker = new google.maps.Marker({
                 position: position,
                 map: map,
-                title: locations[i][0]
+                title: locations[i][0],
             });
 
             // Automatically center the map fitting all markers on the screen
@@ -123,6 +142,7 @@
 
             return marker;
         });
+
 
         // An alternative script to add markers to the map using for loop
         // var markers = [];
@@ -149,11 +169,12 @@
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
         }
+
         </script>
-        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-        </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap"></script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap" ></script>
+
     </body>
     </html>
-
-    <!-- https://developers.google.com/maps/documentation/javascript/marker-clustering -->
+<!-- MY_API_KEY -->
+<!-- https://developers.google.com/maps/documentation/javascript/marker-clustering -->
