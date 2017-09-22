@@ -156,16 +156,16 @@ function makeArmy() {
   return shooters;
 }
 
-// Test
-let army = makeArmy();
-
-for (let counter = 0; counter < 10; counter++) {
-  army[counter]();
-}
-
-army[0](); // the shooter number 0 shows 10
-army[5](); // and number 5 also outputs 10...
-// ... all shooters show 10 instead of their 0, 1, 2, 3...
+// // Test
+// let army = makeArmy();
+//
+// for (let counter = 0; counter < 10; counter++) {
+//   army[counter]();
+// }
+//
+// army[0](); // the shooter number 0 shows 10
+// army[5](); // and number 5 also outputs 10...
+// // ... all shooters show 10 instead of their 0, 1, 2, 3...
 
 // -------------------------------------------------------- //
 function makeArmy_solution() {
@@ -182,7 +182,7 @@ function makeArmy_solution() {
   return shooters;
 }
 
-let army6a = makeArmy_solution();
+// let army6a = makeArmy_solution();
 
-army6a[0](); // 0
-army6a[5](); // 5
+// army6a[0](); // 0
+// army6a[5](); // 5
