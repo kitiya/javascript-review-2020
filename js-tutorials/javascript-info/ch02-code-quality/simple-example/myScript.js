@@ -1,0 +1,3 @@
+function mochaTest(){
+  return "Hello";
+}
