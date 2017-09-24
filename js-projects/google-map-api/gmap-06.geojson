@@ -1,0 +1,1 @@
+geoJsonData = '[{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[13.7563,100.5018]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[51.5081289,-0.128005]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[48.856614,2.3522219]}}]}]'

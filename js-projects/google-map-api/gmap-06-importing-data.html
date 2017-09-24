@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maps API</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="http://maps.google.com/mapfiles/ms/micons/cycling.png">
+
+    <style>
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+    <script type="text/javascript" src="gmap-06.geojson"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+    var map;
+    var geoJsonData = JSON.parse(geoJsonData);
+
+    function initMap() {
+        var bounds = new google.maps.LatLngBounds();
+
+        var myCenter = new google.maps.LatLng(47.3769, 8.5417);
+        var mapOptions = {center: myCenter, zoom: 5};
+
+        var mapCanvas = document.getElementById("map");
+
+        // Display a map on the page
+        map = new google.maps.Map(mapCanvas, mapOptions);
+
+        let features = geoJsonData[0].features;
+        // console.log(features); // for debugging
+
+        var markers = features.map(function(feature, i) {
+            var lat = feature.geometry.coordinates[0];
+            var lng = feature.geometry.coordinates[1];
+
+            var position = new google.maps.LatLng(lat, lng);
+
+            bounds.extend(position);
+
+            var marker = new google.maps.Marker({
+                position: position,
+                map: map,
+            });
+
+            map.fitBounds(bounds);
+
+        });
+    }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap"></script>
+</body>
+</html>
+<!-- MY_API_KEY -->
+<!-- http://geojson.io/ -->
