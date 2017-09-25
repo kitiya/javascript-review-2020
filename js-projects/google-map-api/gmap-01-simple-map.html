@@ -29,16 +29,17 @@
     function initMap() {
         var bounds = new google.maps.LatLngBounds();
 
-        var mapCanvas = document.getElementById("map");
+        var mapOptions = {
+            zoom: 12,
+            center: new google.maps.LatLng(40, 20),
+            mapTypeId:  google.maps.MapTypeId.TERRAIN
+        };
 
-        var myCenter = new google.maps.LatLng(40, 20);
-        var mapOptions = {center: myCenter, zoom: 12};
-
-        map = new google.maps.Map(mapCanvas, mapOptions);
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
         var visited = new google.maps.LatLng(52.14, -0.120850);
 
-        bounds.extend(myCenter);
+        bounds.extend(new google.maps.LatLng(40, 20));
         bounds.extend(visited);
 
         var marker = new google.maps.Marker({
