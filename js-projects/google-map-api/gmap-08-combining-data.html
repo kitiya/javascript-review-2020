@@ -92,7 +92,12 @@
       function loadCensusData(variable) {
         // load the requested variable from the census API (using local copies)
         var xhr = new XMLHttpRequest();
+
+        // xhr.open('GET', 'http://api.census.gov/data/2012/acs5/profile?get=' +
+        //   variable + '&for=state:*&key=MY_API_KEY');
+
         xhr.open('GET', variable + '.json');
+
         xhr.onload = function() {
           var censusData = JSON.parse(xhr.responseText);
           censusData.shift(); // the first row contains column names
@@ -210,7 +215,7 @@
       }
 
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfC_jR-5yEgyr80KyaWlKXDJKmj3OB3R4&callback=initMap" ></script>
 
   </body>
 </html>
