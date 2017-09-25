@@ -27,13 +27,13 @@
     var map;
 
     function initMap() {
-        var mapOptions = {
-            zoom: 2,
-            center: {lat: 20, lng: 151.196123},
-            mapTypeId:  google.maps.MapTypeId.SATELLITE
-        };
+        var bounds = new google.maps.LatLngBounds();
 
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 2,
+            center: new google.maps.LatLng(15, -187.3),
+            mapTypeId: 'terrain',
+        });
 
         // Create a <script> tag and set the USGS URL as the source.
         var script = document.createElement('script');
@@ -41,34 +41,29 @@
         // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
         script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
         document.getElementsByTagName('head')[0].appendChild(script);
-    }
 
-    function eqfeed_callback(results) {
-        var heatmapData = [];
+        // Loop through the results array and place a marker for each
+        // set of coordinates.
+        window.eqfeed_callback = function(results) {
+            results.features.map(feature => {
+                var coords = feature.geometry.coordinates;
+                var latLng = new google.maps.LatLng(coords[1], coords[0]);
 
-        results.features.map(feature => {
-            var coords = feature.geometry.coordinates;
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
 
-            console.log(coords[1]);
-
-            var position = new google.maps.LatLng(coords[1], coords[0]);
-
-            console.log(position);
-            heatmapData.push(position);
-        });
-
-        // what data for the heatmap and how to display it
-        var heatmap = new google.maps.visualization.HeatmapLayer({
-            data: heatmapData,
-            dissipating: false,
-            map: map
-        });
+                bounds.extend(latLng);
+                map.fitBounds(bounds);
+            });
+        }
     }
     </script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&libraries=visualization&callback=initMap" ></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=MY_API_KEY&callback=initMap"></script>
 
 </body>
 </html>
-<!-- MY_API_KEY -->
-<!-- Google Map API Marker Icon Url? https://stackoverflow.com/questions/31197596/google-map-api-marker-icon-url -->
+<!-- https://developers.google.com/maps/documentation/javascript/earthquakes -->
+<!-- https://earthquake.usgs.gov/earthquakes/feed/ -->
