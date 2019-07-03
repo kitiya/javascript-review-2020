@@ -2,23 +2,17 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
-
-
+    <title>anonymous function</title>
   </head>
   <body>
     <div class="" id="main">
-
     </div>
 
     <script type="text/javascript">
       var theBiggest = (a,b) => {
-        var result;
-        result = a > b ? ["a", a] : ["b", b];
-
-        return result;
+        return a > b ? ["a", a] : ["b", b];
       }
-      document.getElementById("main").innerHTML = theBiggest(11, 7);
+      document.getElementById("main").innerHTML = theBiggest(11, 17);
     </script>
   </body>
 </html>
