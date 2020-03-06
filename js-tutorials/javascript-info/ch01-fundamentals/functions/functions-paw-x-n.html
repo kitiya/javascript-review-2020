@@ -1,6 +1,6 @@
 <html>
-<script>
-  /*
+  <script>
+    /*
     https://javascript.info/function-basics#function-pow-x-n
 
     Write a function pow(x,n) that returns x in power n. Or, in other words, multiplies x by itself n times and returns the result.
@@ -16,34 +16,24 @@
     let x = prompt("x: ");
     let n = prompt("n: ");
 
-    function paw(x,n) {
+    function paw(x, n) {
       let result = 0;
-
       if (n == 0) {
-
         return 1;
-
       } else if (n > 0) {
-
         result = x;
-
         for (let i = 1; i < n; i++) {
           result *= x;
         }
-
       } else {
-
         result = 1;
-
         for (let i = n; i < 0; i++) {
           result /= x;
-        } 
+        }
       }
-      
       return result;
     }
 
-    alert(paw(x,n));
-
-    </script>
-    </html>
+    alert(paw(x, n));
+  </script>
+</html>
