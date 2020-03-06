@@ -1,0 +1,13 @@
+#js006 {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 30px;
+  background: linear-gradient(to right, #ff6347, #ffc0cb); /* tomato, pink */
+  color: #222;
+}
+
+h1 {
+  text-transform: uppercase;
+  width: 100%;
+}

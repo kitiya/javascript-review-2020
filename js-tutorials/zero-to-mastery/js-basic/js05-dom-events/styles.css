@@ -1,0 +1,12 @@
+#js005 {
+  height: 100vh;
+  padding: 50px 100px;
+  background: linear-gradient(to right, aqua, teal);
+}
+#js005 .done {
+  text-decoration: line-through;
+}
+
+li {
+  padding: 10px;
+}

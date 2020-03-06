@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>var vs let</title>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+  <body>
+    <h1>VAR vs LET: The difference is scoping.</h1>
+    <p><strong>var</strong> is scoped to the nearest function block</p>
+    <p>
+      <strong>let</strong> is scoped to the nearest enclosing block (both are
+      global if outside any block), which can be smaller than a function block.
+    </p>
+    <p>
+      Also, variables declared with let are not accessible before they are
+      declared in their enclosing block.
+    </p>
+    <section class="var-container"></section>
+    <section class="let-container"></section>
+    <script src="script.js" defer></script>
+  </body>
+</html>
